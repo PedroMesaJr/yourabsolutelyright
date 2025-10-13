@@ -1,0 +1,215 @@
+# LANDING PAGE LAYOUT SKETCH
+# YOURABSOLUTELYRIGHT.COM
+
+## Overall Page Structure (Single-Page Scroll)
+┌─────────────────────────────────────────────────────────┐
+│                                                         │
+│                    [HERO SECTION]                       │
+│                   Full Viewport Height                  │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│                                                         │
+│                  [PRODUCT CAROUSEL]                     │
+│                 Horizontal Scrolling                    │
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│                      [FOOTER]                           │
+│                   Links & Copyright                     │
+└─────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════
+SECTION 1: HERO SECTION (100vh)
+═══════════════════════════════════════════════════════════
+
+Background: Aged cream paper (#F4F3EE)
+Subtle paper texture overlay (2-3% opacity)
+
+┌─────────────────────────────────────────────────────────┐
+│                                                         │
+│   [Optional Nav]  Logo/Brand    About | Contact        │ <- Minimal, subtle
+│                                                         │
+│                                                         │
+│            ┌───────────────────────────┐               │
+│            │                           │               │
+│            │    [HERO LOGO IMAGE]      │               │ <- hero-logo.png
+│            │                           │               │ <- "You're" with starburst
+│            │   Width: 600-800px        │               │ <- Coral #E67E5E + Cream
+│            │   Centered on page        │               │
+│            │                           │               │
+│            └───────────────────────────┘               │
+│                                                         │
+│                                                         │
+│           "absolutely right."                           │ <- Text below logo
+│           Font: 3-4rem, light weight                   │ <- Dark brown #3C3532
+│           Letter-spacing: wide                         │
+│                                                         │
+│                                                         │
+│               [Scroll hint ↓]                           │ <- Subtle, optional
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+HERO DETAILS:
+- Logo placement: Vertical center, slight offset up (45% from top)
+- Text "absolutely right.": 80px below logo
+- Breathing room all around
+- No buttons, no CTAs - just the statement
+- Subtle fade-in animation on load (optional)
+
+═══════════════════════════════════════════════════════════
+SECTION 2: PRODUCT CAROUSEL
+═══════════════════════════════════════════════════════════
+
+Background: Same cream (#F4F3EE)
+Padding: 80px top, 120px bottom
+
+┌─────────────────────────────────────────────────────────┐
+│                                                         │
+│         "Get Your Own"                                  │ <- Section heading
+│         Font: 2.5rem, medium weight                    │ <- Dark brown
+│         Centered                                       │
+│                                                         │
+│   ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌────     │ <- Horizontal scroll
+│   │          │  │          │  │          │  │         │ <- Overflow hidden
+│   │  [IMG]   │  │  [IMG]   │  │  [IMG]   │  │  [IMG   │ <- Product images
+│   │          │  │          │  │          │  │         │
+│   │  Name    │  │  Name    │  │  Name    │  │  Name   │ <- Product name
+│   │  $24.99  │  │  $19.99  │  │  $34.99  │  │  $29.   │ <- Price
+│   │          │  │          │  │          │  │         │
+│   │ [Buy Now]│  │ [Buy Now]│  │ [Buy Now]│  │ [Buy    │ <- CTA button
+│   │          │  │          │  │          │  │         │
+│   └──────────┘  └──────────┘  └──────────┘  └────     │
+│                                                         │
+│   ← swipe →                                             │ <- Hint for mobile
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+PRODUCT CARD DETAILS:
+- Card size: 300px width x 420px height
+- Gap between cards: 24px
+- Card background: White/cream (#FFFEF9) with subtle shadow
+- Border-radius: 8px
+- Product image: 300x300px, fills top of card
+- Padding inside card: 20px
+- Hover effect: lift up 4px, shadow increases
+- Button: Coral accent on hover (#E67E5E)
+
+CAROUSEL BEHAVIOR:
+- Desktop: Show 3-4 cards, scroll with arrows or drag
+- Tablet: Show 2 cards, touch scroll
+- Mobile: Show 1 card + peek next, swipe
+- Smooth scroll behavior
+- Snap to card edges
+
+═══════════════════════════════════════════════════════════
+SECTION 3: FOOTER
+═══════════════════════════════════════════════════════════
+
+Background: Slightly darker cream (#EAE7DF)
+Padding: 40px vertical
+Border-top: 1px solid #D8D3C8 (subtle divider)
+
+┌─────────────────────────────────────────────────────────┐
+│                                                         │
+│        Terms & Conditions  |  Privacy  |  Contact      │ <- Links
+│                                                         │
+│          © 2025 YouAbsolutelyRight.com                  │ <- Copyright
+│       Built with Claude Code 🤖                         │ <- Credit
+│                                                         │
+└─────────────────────────────────────────────────────────┘
+
+FOOTER DETAILS:
+- Font: 0.875rem (14px)
+- Text color: Medium brown (#6B5F58)
+- Links: Underline on hover
+- Centered alignment
+- Minimal, functional
+
+═══════════════════════════════════════════════════════════
+RESPONSIVE BREAKPOINTS
+═══════════════════════════════════════════════════════════
+
+DESKTOP (>1024px):
+- Hero logo: 700px wide
+- "absolutely right." text: 3.5rem
+- Product carousel: 3-4 cards visible
+- Container max-width: 1280px
+
+TABLET (640px - 1024px):
+- Hero logo: 500px wide
+- "absolutely right." text: 2.5rem
+- Product carousel: 2 cards visible
+- Padding: reduced to 60px
+
+MOBILE (<640px):
+- Hero logo: 90% of viewport width (max 400px)
+- "absolutely right." text: 1.875rem
+- Product carousel: 1 card + peek
+- Padding: reduced to 40px
+- Footer: stack links vertically
+
+═══════════════════════════════════════════════════════════
+SPACING & MEASUREMENTS
+═══════════════════════════════════════════════════════════
+
+Vertical Rhythm:
+- Hero section: 100vh (full viewport)
+- Between hero and products: 0px (seamless)
+- Product section padding: 80px top, 120px bottom
+- Footer height: ~150px
+
+Horizontal Spacing:
+- Page margins (desktop): 40px left/right
+- Page margins (mobile): 20px left/right
+- Product card gaps: 24px
+- Container max-width: 1280px
+
+═══════════════════════════════════════════════════════════
+VISUAL HIERARCHY
+═══════════════════════════════════════════════════════════
+
+1. Hero logo (Most prominent) - "You're" starburst
+2. "absolutely right." text (Secondary)
+3. Product images (Tertiary)
+4. Product names & prices
+5. Buy buttons
+6. Footer links (Least prominent)
+
+═══════════════════════════════════════════════════════════
+INTERACTION DESIGN
+═══════════════════════════════════════════════════════════
+
+Animations (Subtle, Fast):
+- Hero logo: Fade in on load (400ms)
+- Product cards: Fade in on scroll (250ms each, staggered)
+- Hover states: 250ms ease transitions
+- Scroll: Smooth behavior
+
+No Animations That:
+- Delay content visibility
+- Distract from message
+- Slow down interactions
+- Annoy on repeat visits
+
+═══════════════════════════════════════════════════════════
+ACCESSIBILITY NOTES
+═══════════════════════════════════════════════════════════
+
+- Text contrast: Pass WCAG AA (4.5:1)
+- Touch targets: Min 44x44px
+- Keyboard navigation: All interactive elements
+- Alt text: All images
+- Focus states: Visible outlines
+- Screen reader: Semantic HTML
+
+═══════════════════════════════════════════════════════════
+PERFORMANCE TARGETS
+═══════════════════════════════════════════════════════════
+
+- First Contentful Paint: <1.5s
+- Largest Contentful Paint: <2.5s
+- Total page weight: <500KB
+- Images: WebP format, optimized
+- CSS: Single file, minified
+- JS: Minimal, only for carousel
