@@ -6,7 +6,7 @@
   <p><strong>Merch for when Claude validates your existence.</strong></p>
 
   <p>
-    <a href="https://yourabsolutelyright.vercel.app">🛍️ Visit Store</a> •
+    <a href="https://yourabsolutelyright.com">🛍️ Visit Store</a> •
     <a href="#why-this-exists">Why Though?</a> •
     <a href="#tech-stack">Tech Stack</a> •
     <a href="#for-developers">For Developers</a>
@@ -114,7 +114,7 @@ Built with the same thoughtful care Claude puts into every response. Except we'r
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/yourabsolutelyright.git
+git clone https://github.com/PedroMesaJr/yourabsolutelyright.git
 cd yourabsolutelyright
 
 # Install dependencies
@@ -277,8 +277,8 @@ If Anthropic asks us to take it down, we probably will. Until then, we're vibing
 
 ## 🔗 Links
 
-- **Live Site:** [yourabsolutelyright.com](https://yourabsolutelyright.vercel.app)
-- **Issues:** [Report bugs](https://github.com/yourusername/yourabsolutelyright/issues)
+- **Live Site:** [yourabsolutelyright.com](https://yourabsolutelyright.com)
+- **Issues:** [Report bugs](https://github.com/PedroMesaJr/yourabsolutelyright/issues)
 - **Contact:** support@yourabsolutelyright.com
 
 ---
@@ -292,8 +292,8 @@ If Anthropic asks us to take it down, we probably will. Until then, we're vibing
   <br/>
 
   <p>
-    <a href="https://yourabsolutelyright.vercel.app">Visit Store</a> •
-    <a href="https://github.com/yourusername/yourabsolutelyright/issues">Report Issue</a> •
+    <a href="https://yourabsolutelyright.com">Visit Store</a> •
+    <a href="https://github.com/PedroMesaJr/yourabsolutelyright/issues">Report Issue</a> •
     <a href="#tech-stack">Tech Docs</a>
   </p>
 
