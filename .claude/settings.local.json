@@ -10,7 +10,9 @@
       "Bash(cat:*)",
       "Bash(tree:*)",
       "Bash(pkill:*)",
-      "Bash(timeout:*)"
+      "Bash(timeout:*)",
+      "Bash(node server.js)",
+      "Bash(node:*)"
     ],
     "deny": [],
     "ask": []
