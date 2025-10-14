@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FORCE COLOR TEST</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        html, body {
+            background: #F4F3EE !important;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body style="background: #F4F3EE !important;">
+    <div style="padding: 50px; font-family: Arial;">
+        <h1 style="color: #E67E5E;">COLOR TEST</h1>
+        <p style="margin: 20px 0;">If this background is WHITE, your browser or system is broken.</p>
+        <p style="margin: 20px 0;">If this background is CREAM/BEIGE, then React isn't loading CSS.</p>
+        <div style="background: white; padding: 20px; margin: 20px 0; border: 2px solid red;">
+            This box is WHITE for comparison.
+        </div>
+        <div style="background: #F4F3EE; padding: 20px; border: 2px solid blue;">
+            This box should match the page background.
+        </div>
+    </div>
+</body>
+</html>

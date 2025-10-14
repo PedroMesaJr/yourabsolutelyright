@@ -1,11 +1,17 @@
-// Hero component - placeholder for now
 import React from 'react';
+import '../styles/Hero.css';
 
 function Hero() {
   return (
-    <div className="hero">
-      <h1>Hero Component</h1>
-    </div>
+    <section className="hero" style={{backgroundColor: '#D06D4F', minHeight: '100vh'}}>
+      <div className="hero-content">
+        <img
+          src="/images/hero-logo.png"
+          alt="You're absolutely right"
+          className="hero-logo"
+        />
+      </div>
+    </section>
   );
 }
 

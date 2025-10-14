@@ -1,10 +1,10 @@
 import './App.css';
+import Hero from './components/Hero';
 
 function App() {
   return (
-    <div className="App">
-      <h1>You're Absolutely Right</h1>
-      <p>Coming soon...</p>
+    <div className="App" style={{backgroundColor: '#D06D4F', minHeight: '100vh'}}>
+      <Hero />
     </div>
   );
 }

@@ -1,3 +1,4 @@
 .App {
-  /* Main app container - styles will be added later */
+  background-color: #D06D4F !important;
+  min-height: 100vh;
 }
