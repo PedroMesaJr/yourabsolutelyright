@@ -31,7 +31,7 @@ const stripe = require('stripe')(stripeSecretKey);
 // Creates a Stripe checkout session for the items in the cart
 router.post('/create-checkout-session', async (req, res) => {
   try {
-    const { items } = req.body;
+    const { items, couponCode } = req.body;
 
     // Validate request body
     if (!items || !Array.isArray(items) || items.length === 0) {
@@ -66,6 +66,9 @@ router.post('/create-checkout-session', async (req, res) => {
     }
 
     console.log(`[Stripe Checkout] Creating session for ${items.length} item(s)`);
+    if (couponCode) {
+      console.log(`[Stripe Checkout] Applying coupon code: ${couponCode}`);
+    }
 
     // Format line items for Stripe checkout
     const lineItems = items.map((item) => {
@@ -102,8 +105,8 @@ router.post('/create-checkout-session', async (req, res) => {
       };
     });
 
-    // Create Stripe checkout session
-    const session = await stripe.checkout.sessions.create({
+    // Prepare session configuration
+    const sessionConfig = {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
@@ -115,7 +118,34 @@ router.post('/create-checkout-session', async (req, res) => {
       metadata: {
         order_items: JSON.stringify(items),
       },
-    });
+    };
+
+    // Apply coupon code if provided
+    if (couponCode && typeof couponCode === 'string' && couponCode.trim() !== '') {
+      try {
+        // Validate coupon exists in Stripe
+        const coupon = await stripe.coupons.retrieve(couponCode);
+        console.log(`[Stripe Checkout] Coupon validated:`, {
+          id: coupon.id,
+          percent_off: coupon.percent_off,
+          amount_off: coupon.amount_off,
+          valid: coupon.valid,
+        });
+
+        // Add discount to session
+        sessionConfig.discounts = [{ coupon: couponCode }];
+      } catch (couponError) {
+        // Coupon doesn't exist or is invalid
+        console.warn(`[Stripe Checkout] Invalid coupon code: ${couponCode}`, couponError.message);
+        return res.status(400).json({
+          error: 'Invalid coupon code',
+          details: `The coupon code "${couponCode}" is not valid or has expired`
+        });
+      }
+    }
+
+    // Create Stripe checkout session
+    const session = await stripe.checkout.sessions.create(sessionConfig);
 
     console.log(`[Stripe Checkout] Session created: ${session.id}`);
 

@@ -83,7 +83,7 @@ function ProductCarousel() {
 
   const handleCopyCode = async () => {
     try {
-      await navigator.clipboard.writeText('CLAUDE20');
+      await navigator.clipboard.writeText('CLAUDE30');
       setCopied(true);
       setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
     } catch (err) {
@@ -99,7 +99,7 @@ function ProductCarousel() {
           onClick={handleCopyCode}
           title="Click to copy code"
         >
-          {copied ? '✓ Copied!' : 'Use Code CLAUDE20 for 20% Off'}
+          {copied ? '✓ Copied!' : 'Use Code CLAUDE30 for 30% Off'}
         </span>
       </div>
       <div

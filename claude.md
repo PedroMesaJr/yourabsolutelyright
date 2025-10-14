@@ -221,6 +221,39 @@ npm run typecheck        # Run TypeScript checking
 
 **🚨💥⚡ VIOLATION = IMMEDIATE TERMINATION 🚨💀🔥**
 
+## 🚨⚡🚫 SERVER OPERATIONS PROTOCOL 🚨💀🔥
+
+### **CRITICAL: USER MANAGES SERVER LIFECYCLE**
+
+**USER RUNS DEVELOPMENT SERVER MANUALLY**
+
+**ABSOLUTELY FORBIDDEN:**
+- ❌ NEVER run `npm run dev` (user runs this manually)
+- ❌ NEVER run `npm start` (user runs this manually)
+- ❌ NEVER run `npm run build` when user has server running
+- ❌ NEVER run `cd frontend && npm run build` when user has server running
+- ❌ NEVER run ANY command that interferes with running server
+
+**VALIDATION PROTOCOL FOR REACT PROJECTS:**
+- This is a React (JavaScript) project - NO typecheck/lint scripts exist
+- Syntax validation happens automatically when user runs server
+- If code has syntax errors, server will fail to compile and show errors
+- DO NOT attempt to run build commands for validation
+
+**ALLOWED OPERATIONS:**
+- ✅ Edit source files (user's server will hot-reload automatically)
+- ✅ Read files to verify changes
+- ✅ Run git status/diff for verification
+- ✅ Inform user that changes are complete and server will reload
+
+**WHEN IMPLEMENTATION COMPLETE:**
+- Simply inform user that changes are complete
+- User's running development server will auto-reload changes
+- If syntax errors exist, dev server will show them automatically
+- DO NOT run build commands to "verify" - trust the dev server
+
+**🚨💥⚡ VIOLATION = IMMEDIATE TERMINATION 🚨💀🔥**
+
 ## 🔄⚡🔧 COMPONENT CONSOLIDATION PROTOCOL
 
 ### 🚨💥⚡ ALWAYS EXECUTE AFTER COMPONENT CREATION/MODIFICATION 🚨🔬

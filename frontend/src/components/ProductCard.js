@@ -13,6 +13,8 @@ function ProductCard({ product }) {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [showSizeSelector, setShowSizeSelector] = useState(false);
   const [selectedVariant, setSelectedVariant] = useState(null);
+  const [showCouponModal, setShowCouponModal] = useState(false);
+  const [couponCode, setCouponCode] = useState('');
   const imageRef = useRef(null);
   const cardRef = useRef(null);
 
@@ -104,11 +106,11 @@ function ProductCard({ product }) {
       return;
     }
 
-    // Otherwise, proceed to checkout directly
-    await proceedToCheckout();
+    // Otherwise, show coupon modal
+    setShowCouponModal(true);
   };
 
-  const proceedToCheckout = async (variant = null) => {
+  const proceedToCheckout = async (variant = null, coupon = '') => {
     try {
       // Reset error state
       setError(null);
@@ -120,9 +122,12 @@ function ProductCard({ product }) {
       if (variant) {
         console.log('[ProductCard] Selected variant:', variant);
       }
+      if (coupon) {
+        console.log('[ProductCard] Coupon code:', coupon);
+      }
 
-      // Create checkout session with selected variant
-      const checkoutUrl = await createCheckoutSession(product, variant);
+      // Create checkout session with selected variant and coupon code
+      const checkoutUrl = await createCheckoutSession(product, variant, coupon);
 
       // Redirect to Stripe Checkout
       console.log('[ProductCard] Redirecting to checkout:', checkoutUrl);
@@ -132,13 +137,24 @@ function ProductCard({ product }) {
       setError(err.message || 'Failed to start checkout. Please try again.');
       setLoading(false);
       setShowSizeSelector(false);
+      setShowCouponModal(false);
     }
   };
 
   const handleVariantSelect = (variant) => {
     setSelectedVariant(variant);
     setShowSizeSelector(false);
-    proceedToCheckout(variant);
+    setShowCouponModal(true);
+  };
+
+  const handleCouponSkip = () => {
+    setShowCouponModal(false);
+    proceedToCheckout(selectedVariant, '');
+  };
+
+  const handleCouponApply = () => {
+    setShowCouponModal(false);
+    proceedToCheckout(selectedVariant, couponCode);
   };
 
   return (
@@ -217,6 +233,43 @@ function ProductCard({ product }) {
                   <span className="size-price">${variant.retailPrice}</span>
                 </button>
               ))}
+            </div>
+          </div>
+        </div>
+        )}
+
+        {showCouponModal && (
+        <div className="size-modal" onClick={() => setShowCouponModal(false)}>
+          <div className="size-modal-content coupon-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="size-modal-close" onClick={() => setShowCouponModal(false)}>×</button>
+            <h3 className="size-modal-title">Have a Coupon Code?</h3>
+            <p className="size-modal-product">Enter your code below or skip to continue</p>
+            <div className="coupon-input-wrapper">
+              <input
+                type="text"
+                className="coupon-input-modal"
+                placeholder="Enter coupon code"
+                value={couponCode}
+                onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                disabled={loading}
+                autoFocus
+              />
+            </div>
+            <div className="coupon-actions">
+              <button
+                className="coupon-skip-btn"
+                onClick={handleCouponSkip}
+                disabled={loading}
+              >
+                Skip
+              </button>
+              <button
+                className="coupon-apply-btn"
+                onClick={handleCouponApply}
+                disabled={loading || !couponCode.trim()}
+              >
+                {loading ? 'Processing...' : 'Apply & Continue'}
+              </button>
             </div>
           </div>
         </div>

@@ -64,7 +64,7 @@ function Terms() {
                 </p>
                 <p className="terms-text">
                   Prices are in USD. Discount codes can be applied at checkout.
-                  Use code <strong>CLAUDE20</strong> for 20% off while it lasts.
+                  Use code <strong>CLAUDE30</strong> for 30% off while it lasts.
                 </p>
               </div>
 

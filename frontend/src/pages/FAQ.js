@@ -72,7 +72,7 @@ function FAQ() {
               <div className="faq-item">
                 <h2 className="faq-question">Can I use the discount code?</h2>
                 <p className="faq-answer highlight-answer">
-                  YES. Use code <strong>CLAUDE20</strong> for 20% off.
+                  YES. Use code <strong>CLAUDE30</strong> for 30% off.
                   You're absolutely right to save money. 💰
                 </p>
               </div>

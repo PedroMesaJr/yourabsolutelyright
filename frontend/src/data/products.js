@@ -14,7 +14,7 @@ export const products = [
     id: 2,
     name: "Premium Flip-Flops",
     description: "Walk confidently knowing you're absolutely right. Comfortable sublimation flip-flops for beach, pool, or casual wear.",
-    price: 54.99,
+    price: 42.85,
     image: "/images/products/flip-flops/1-front.png",
     images: [
       "/images/products/flip-flops/1-front.png",
@@ -29,9 +29,9 @@ export const products = [
     ],
     // Printful Sublimation Flip-Flops - 3 size variants
     printfulVariants: [
-      { size: "S", variantId: "68edc70ad35415", retailPrice: 54.99 },
-      { size: "M", variantId: "68edc70ad35473", retailPrice: 54.99 },
-      { size: "L", variantId: "68edc70ad354c8", retailPrice: 54.99 },
+      { size: "S", variantId: "68edc70ad35415", retailPrice: 42.85 },
+      { size: "M", variantId: "68edc70ad35473", retailPrice: 42.85 },
+      { size: "L", variantId: "68edc70ad354c8", retailPrice: 42.85 },
     ],
     printfulId: "68edc70ad35415", // Default to S size
   },
@@ -49,6 +49,7 @@ export const products = [
       "/images/products/backpack/5-left-front.png",
       "/images/products/backpack/6-bottom.png",
       "/images/products/backpack/7-detail.png",
+      "/images/products/backpack/8-back-white.png",
     ],
     printfulId: "68edc709c3b424", // All-Over Print Minimalist Backpack
   },
@@ -85,15 +86,42 @@ export const products = [
     id: 6,
     name: "Oversized Heavyweight Hoodie",
     description: "Full-zip hoodie for maximum comfort and absolutely right vibes. Perfect for any occasion.",
-    price: 49.99,
-    image: "/images/products/hoodie-gray.png",
-    printfulId: "68edc70e7c5cf5", // Oversized heavyweight hoodie from Printful (12 variants)
+    price: 116.67,
+    image: "/images/products/oversized-hoodie/1-black-front.png",
+    images: [
+      "/images/products/oversized-hoodie/1-black-front.png",
+      "/images/products/oversized-hoodie/2-black-left.png",
+      "/images/products/oversized-hoodie/3-black-right.png",
+      "/images/products/oversized-hoodie/4-black-left-front.png",
+      "/images/products/oversized-hoodie/5-black-right-front.png",
+      "/images/products/oversized-hoodie/6-white-front.png",
+      "/images/products/oversized-hoodie/7-white-front-2.png",
+      "/images/products/oversized-hoodie/8-white-left.png",
+      "/images/products/oversized-hoodie/9-white-right.png",
+      "/images/products/oversized-hoodie/10-white-right-front.png",
+    ],
+    // Printful Bella + Canvas 4719 Oversized Heavyweight Hoodie - 12 variants (2 colors × 6 sizes)
+    printfulVariants: [
+      { size: "S", variantId: "68edc70e7c5d89", retailPrice: 116.67 },   // Black S
+      { size: "M", variantId: "68edc70e7c5df8", retailPrice: 116.67 },   // Black M
+      { size: "L", variantId: "68edc70e7c5e47", retailPrice: 116.67 },   // Black L
+      { size: "XL", variantId: "68edc70e7c5e96", retailPrice: 116.67 },  // Black XL
+      { size: "2XL", variantId: "68edc70e7c5ee1", retailPrice: 122.73 }, // Black 2XL
+      { size: "3XL", variantId: "68edc70e7c5f27", retailPrice: 128.79 }, // Black 3XL
+      { size: "S", variantId: "68edc70e7c5f79", retailPrice: 116.67 },   // White S
+      { size: "M", variantId: "68edc70e7c5fc3", retailPrice: 116.67 },   // White M
+      { size: "L", variantId: "68edc70e7c6012", retailPrice: 116.67 },   // White L
+      { size: "XL", variantId: "68edc70e7c6054", retailPrice: 116.67 },  // White XL
+      { size: "2XL", variantId: "68edc70e7c60a6", retailPrice: 122.73 }, // White 2XL
+      { size: "3XL", variantId: "68edc70e7c60f3", retailPrice: 128.79 }, // White 3XL
+    ],
+    printfulId: "68edc70e7c5d89", // Default to Black S
   },
   {
     id: 7,
     name: "Crop Hoodie",
     description: "Trendy crop hoodie for those absolutely right fashion moments. Comfort meets style.",
-    price: 110.50,
+    price: 100.45,
     image: "/images/products/crop-hoodie/1-front.png",
     images: [
       "/images/products/crop-hoodie/1-front.png",
@@ -109,21 +137,13 @@ export const products = [
     ],
     // Printful Bella + Canvas 7502 Women's Fleece Crop Hoodie - 5 size variants
     printfulVariants: [
-      { size: "S", variantId: "68edc70a5ba064", retailPrice: 110.50 },
-      { size: "M", variantId: "68edc70a5ba0b6", retailPrice: 110.50 },
-      { size: "L", variantId: "68edc70a5ba0f7", retailPrice: 110.50 },
-      { size: "XL", variantId: "68edc70a5ba144", retailPrice: 110.50 },
-      { size: "2XL", variantId: "68edc70a5ba184", retailPrice: 117.99 },
+      { size: "S", variantId: "68edc70a5ba064", retailPrice: 100.45 },
+      { size: "M", variantId: "68edc70a5ba0b6", retailPrice: 100.45 },
+      { size: "L", variantId: "68edc70a5ba0f7", retailPrice: 100.45 },
+      { size: "XL", variantId: "68edc70a5ba144", retailPrice: 100.45 },
+      { size: "2XL", variantId: "68edc70a5ba184", retailPrice: 106.52 },
     ],
     printfulId: "68edc70a5ba064", // Default to S size
-  },
-  {
-    id: 8,
-    name: "Visor",
-    description: "Stay cool and absolutely right with this stylish visor. Perfect for sunny days.",
-    price: 24.99,
-    image: "/images/products/mug-classic.png", // Placeholder - add visor image
-    printfulId: "68edc7090fb5a1", // Visor from Printful (1 variant)
   },
 ];
 
