@@ -115,6 +115,10 @@ router.post('/create-checkout-session', async (req, res) => {
       shipping_address_collection: {
         allowed_countries: ['US', 'CA', 'GB', 'AU', 'DE', 'FR', 'ES', 'IT', 'NL'],
       },
+      payment_intent_data: {
+        statement_descriptor: 'YOURABSRIGHT',
+        statement_descriptor_suffix: 'MERCH',
+      },
       metadata: {
         order_items: JSON.stringify(items),
       },
