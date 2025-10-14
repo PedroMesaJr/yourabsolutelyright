@@ -1,11 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import './App.css';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import ProductCarousel from './components/ProductCarousel';
 import Footer from './components/Footer';
 import LoadingSpinner from './components/LoadingSpinner';
+import { startKeepAlive } from './utils/keepAlive';
 
 // ZERO-LATENCY: Lazy load routes for faster initial page load
 const Success = lazy(() => import('./pages/Success'));
@@ -31,6 +32,11 @@ function HomePage() {
 }
 
 function App() {
+  // Start keep-alive ping when app loads to prevent Render backend from sleeping
+  useEffect(() => {
+    startKeepAlive();
+  }, []);
+
   return (
     <Router>
       <div className="App" style={{backgroundColor: '#D06D4F', minHeight: '100vh'}}>
