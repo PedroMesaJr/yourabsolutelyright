@@ -6,10 +6,12 @@ import '../styles/ProductCarousel.css';
 function ProductCarousel() {
   const containerRef = useRef(null);
   const [isMouseOver, setIsMouseOver] = useState(false);
-  const [scrollSpeed, setScrollSpeed] = useState(1);
   const animationRef = useRef(null);
   const lastMouseMoveTime = useRef(Date.now());
   const mouseSpeedRef = useRef(0);
+  const mouseDirectionRef = useRef(1); // 1 for right, -1 for left
+  const targetSpeedRef = useRef(0);
+  const currentSpeedRef = useRef(0.5);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -28,31 +30,47 @@ function ProductCarousel() {
     const animate = () => {
       if (!container) return;
 
-      // Calculate current speed based on mouse interaction
-      let currentSpeed = baseSpeed;
+      // Calculate target speed based on mouse interaction
+      let targetSpeed = baseSpeed;
+      let direction = 1; // Default right direction
 
       if (isMouseOver) {
-        // Slow down significantly when mouse is over
         const timeSinceLastMove = Date.now() - lastMouseMoveTime.current;
 
-        if (timeSinceLastMove < 100) {
-          // Just moved - follow mouse speed
-          currentSpeed = mouseSpeedRef.current * 0.3;
-        } else if (timeSinceLastMove < 500) {
-          // Recently moved - very slow
-          currentSpeed = baseSpeed * 0.2;
+        if (timeSinceLastMove < 150) {
+          // Just moved - follow mouse speed and direction gently
+          targetSpeed = mouseSpeedRef.current * 0.6;
+          direction = mouseDirectionRef.current;
+        } else if (timeSinceLastMove < 800) {
+          // Recently moved - very slow, almost stopped
+          targetSpeed = baseSpeed * 0.08;
+          direction = 1; // Return to default direction
         } else {
-          // Hovering but not moving - slow
-          currentSpeed = baseSpeed * 0.4;
+          // Hovering but not moving - nearly stopped for easy clicking
+          targetSpeed = baseSpeed * 0.12;
+          direction = 1;
         }
+      } else {
+        // Not hovering - normal speed
+        targetSpeed = baseSpeed;
+        direction = 1;
       }
 
-      scrollPosition += currentSpeed;
+      targetSpeedRef.current = targetSpeed * direction;
 
-      // Reset position when halfway through (seamless loop)
+      // Smooth interpolation for buttery smooth transitions
+      const smoothingFactor = 0.08; // Lower = smoother but slower response
+      currentSpeedRef.current += (targetSpeedRef.current - currentSpeedRef.current) * smoothingFactor;
+
+      scrollPosition += currentSpeedRef.current;
+
+      // Handle bidirectional looping
       const scrollWidth = container.scrollWidth / 2;
+
       if (scrollPosition >= scrollWidth) {
         scrollPosition = 0;
+      } else if (scrollPosition < 0) {
+        scrollPosition = scrollWidth - 1;
       }
 
       container.scrollLeft = scrollPosition;
@@ -72,9 +90,13 @@ function ProductCarousel() {
     const currentTime = Date.now();
     const timeDiff = currentTime - lastMouseMoveTime.current;
 
-    if (timeDiff > 0) {
-      // Calculate mouse speed based on movement
-      mouseSpeedRef.current = Math.abs(e.movementX) / timeDiff * 10;
+    if (timeDiff > 0 && e.movementX !== 0) {
+      // Calculate mouse speed and direction with much gentler response
+      const speed = Math.abs(e.movementX) / Math.max(timeDiff, 1) * 8;
+      mouseSpeedRef.current = Math.min(speed, 1.5); // Much lower cap for smoother control
+
+      // Set direction based on mouse movement
+      mouseDirectionRef.current = e.movementX > 0 ? 1 : -1;
     }
 
     lastMouseMoveTime.current = currentTime;
@@ -88,6 +110,7 @@ function ProductCarousel() {
   const handleMouseLeave = () => {
     setIsMouseOver(false);
     mouseSpeedRef.current = 0;
+    mouseDirectionRef.current = 1;
   };
 
   return (
