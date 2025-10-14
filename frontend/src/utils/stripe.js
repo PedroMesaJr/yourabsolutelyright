@@ -26,7 +26,7 @@ export const createCheckoutSession = async (product, variant = null, couponCode 
     const items = [
       {
         name: productName,
-        description: product.description || '',
+        description: product.shortDescription || product.description || '',
         price: price,
         quantity: 1,
         image: product.image || '',
