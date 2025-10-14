@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo, memo } from 'react';
 import ReactDOM from 'react-dom';
 import { createCheckoutSession } from '../utils/stripe';
 import LoadingSpinner from './LoadingSpinner';
@@ -18,6 +18,7 @@ function ProductCard({ product }) {
   const [showCouponModal, setShowCouponModal] = useState(false);
   const [couponCode, setCouponCode] = useState('');
   const [showDescriptionModal, setShowDescriptionModal] = useState(false);
+  const [prefetchedSession, setPrefetchedSession] = useState(null);
   const imageRef = useRef(null);
   const cardRef = useRef(null);
 
@@ -27,10 +28,12 @@ function ProductCard({ product }) {
   // Check if product has color variants
   const hasColorVariants = product.printfulVariants && product.printfulVariants.some(v => v.color);
 
-  // Get unique colors from variants
-  const availableColors = hasColorVariants
-    ? [...new Set(product.printfulVariants.map(v => v.color).filter(Boolean))]
-    : [];
+  // Get unique colors from variants (memoized for performance)
+  const availableColors = useMemo(() => {
+    return hasColorVariants
+      ? [...new Set(product.printfulVariants.map(v => v.color).filter(Boolean))]
+      : [];
+  }, [hasColorVariants, product.printfulVariants]);
 
   // Check if product has multiple images (gallery)
   const hasGallery = product.images && product.images.length > 1;
@@ -110,6 +113,23 @@ function ProductCard({ product }) {
     }
   };
 
+  // ZERO-LATENCY: Prefetch checkout session on hover for instant redirect
+  const handleBuyNowHover = async () => {
+    // Only prefetch for simple products (no variants) to avoid waste
+    if (hasColorVariants || hasVariants) return;
+    if (prefetchedSession) return; // Already prefetched
+
+    try {
+      console.log('[Performance] 🚀 Prefetching checkout session on hover...');
+      const sessionUrl = await createCheckoutSession(product, null, '');
+      setPrefetchedSession(sessionUrl);
+      console.log('[Performance] ✅ Checkout session prefetched - instant redirect ready');
+    } catch (error) {
+      // Fail silently, will create on click if prefetch fails
+      console.warn('[Performance] Prefetch failed, will create on click');
+    }
+  };
+
   const handleBuyNow = async () => {
     // If product has color variants, show color selector first
     if (hasColorVariants) {
@@ -120,6 +140,13 @@ function ProductCard({ product }) {
     // If product has size variants (but no colors), show size selector
     if (hasVariants) {
       setShowSizeSelector(true);
+      return;
+    }
+
+    // ZERO-LATENCY: Use prefetched session if available for instant redirect
+    if (prefetchedSession) {
+      console.log('[Performance] ⚡ Using prefetched session - instant redirect!');
+      window.location.href = prefetchedSession;
       return;
     }
 
@@ -170,10 +197,12 @@ function ProductCard({ product }) {
     setShowCouponModal(true);
   };
 
-  // Get filtered variants based on selected color
-  const filteredVariants = selectedColor
-    ? product.printfulVariants.filter(v => v.color === selectedColor)
-    : product.printfulVariants;
+  // Get filtered variants based on selected color (memoized for performance)
+  const filteredVariants = useMemo(() => {
+    return selectedColor
+      ? product.printfulVariants.filter(v => v.color === selectedColor)
+      : product.printfulVariants;
+  }, [selectedColor, product.printfulVariants]);
 
   const handleCouponSkip = () => {
     setShowCouponModal(false);
@@ -354,6 +383,7 @@ function ProductCard({ product }) {
           <button
             className={`btn-buy-now ${loading ? 'btn-loading' : ''}`}
             onClick={handleBuyNow}
+            onMouseEnter={handleBuyNowHover}
             disabled={loading}
           >
             {loading ? (
@@ -428,4 +458,8 @@ function ProductCard({ product }) {
   );
 }
 
-export default ProductCard;
+// Memoize component to prevent unnecessary re-renders (zero-latency optimization)
+export default memo(ProductCard, (prevProps, nextProps) => {
+  // Only re-render if product ID changes
+  return prevProps.product.id === nextProps.product.id;
+});

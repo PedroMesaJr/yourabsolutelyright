@@ -10,6 +10,28 @@ function ProductCarousel() {
   const animationRef = useRef(null);
   const autoScrollEnabled = useRef(true);
 
+  // ZERO-LATENCY: Preload ALL product images on mount for instant switching
+  useEffect(() => {
+    const preloadImages = async () => {
+      const imagePromises = products.flatMap(product => {
+        const images = product.images || [product.image];
+        return images.map(src => {
+          return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = resolve;
+            img.onerror = resolve; // Resolve anyway to prevent blocking
+            img.src = src;
+          });
+        });
+      });
+
+      await Promise.all(imagePromises);
+      console.log('[Performance] ✅ All product images preloaded - zero-latency achieved');
+    };
+
+    preloadImages();
+  }, []);
+
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
