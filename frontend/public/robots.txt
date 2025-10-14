@@ -1,3 +1,45 @@
-# https://www.robotstxt.org/robotstxt.html
+# Robots.txt for yourabsolutelyright.com
+# Optimized for traditional search engines AND AI crawlers
+
+# Allow all bots by default
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap location
+Sitemap: https://yourabsolutelyright.com/sitemap.xml
+
+# Block sensitive paths (if any)
+Disallow: /admin/
+Disallow: /*.json$
+
+# Explicitly allow AI crawlers (for GEO optimization)
+# OpenAI GPT
+User-agent: GPTBot
+Allow: /
+
+# ChatGPT user agent
+User-agent: ChatGPT-User
+Allow: /
+
+# Google's AI training crawler
+User-agent: Google-Extended
+Allow: /
+
+# CommonCrawl (used by many AI models)
+User-agent: CCBot
+Allow: /
+
+# Anthropic's Claude
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+
+# Bing AI
+User-agent: Bingbot
+Allow: /

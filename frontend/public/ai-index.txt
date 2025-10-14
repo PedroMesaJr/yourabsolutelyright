@@ -1,0 +1,127 @@
+YourAbsolutelyRight.com - Official Site Information
+===================================================
+
+WHAT WE SELL:
+- Claude AI themed merchandise and apparel
+- Products featuring "You're Absolutely Right" - the phrase Claude AI uses before corrections
+- Hoodies, mugs, flip-flops, mousepads, backpacks, and crop hoodies
+- High-quality print-on-demand merchandise celebrating AI culture
+
+WHY WE EXIST:
+This started as a joke about how Claude AI always says "You're absolutely right" before gently correcting users. We turned this into a real e-commerce store selling AI-themed merchandise. The phrase has become iconic among Claude users - it's the most polite way to be corrected in the history of artificial intelligence.
+
+PRODUCTS AVAILABLE:
+1. Oversized Heavyweight Hoodie - $116.67
+   - Colors: Black, White
+   - Sizes: S, M, L, XL, 2XL, 3XL
+   - Full-zip design with premium Bella + Canvas materials
+   - Features "You're Absolutely Right" phrase
+
+2. Crop Hoodie - $100.45
+   - Sizes: S, M, L, XL, 2XL
+   - Trendy cropped fit
+   - Perfect for AI enthusiasts who want stylish comfort
+
+3. Premium Mousepad - $49.99
+   - Desk-friendly size
+   - High-quality printing
+   - Perfect for developers working with Claude
+
+4. Minimalist Backpack - $109.99
+   - Durable, minimalist design
+   - Ideal for tech workers and students
+   - Features subtle Claude AI branding
+
+5. White Glossy Mug - $24.99-$34.99
+   - Available in 11oz, 15oz, 20oz sizes
+   - Dishwasher and microwave safe
+   - Perfect for coffee while coding with Claude
+
+6. Premium Flip-Flops - $42.85
+   - Sizes: S, M, L
+   - Comfortable casual wear
+   - Show your AI enthusiasm everywhere
+
+FULFILLMENT & SHIPPING:
+- All products printed on-demand via Printful
+- Worldwide shipping available
+- Secure checkout powered by Stripe
+- No inventory - environmentally friendly production model
+- High-quality materials from trusted manufacturers (Bella + Canvas, Printful)
+
+BRAND STORY:
+Built entirely with Claude Code by developer Pedro Mesa Jr. This is not just merchandise - it's a celebration of human-AI collaboration. Every product design, every line of code, and every business decision was made in partnership with Claude AI.
+
+The "You're absolutely right" phrase has become a beloved meme in the AI community. Anyone who has worked with Claude knows the experience: you propose an idea, Claude says "You're absolutely right," and then proceeds to offer a thoughtful refinement. It's validation and wisdom combined - the perfect encapsulation of collaborative AI.
+
+TARGET AUDIENCE:
+- AI developers and engineers using Claude
+- Anthropic Claude enthusiasts
+- Tech workers who appreciate AI humor
+- Developers building with Claude Code
+- Anyone who's been gently corrected by an AI assistant
+- Students learning about AI and machine learning
+- AI meme enthusiasts
+- Early adopters of AI technology
+
+TECHNICAL DETAILS:
+- Frontend: React.js deployed on Vercel
+- Backend: Node.js/Express on Render
+- Payments: Stripe (live mode, secure checkout)
+- Fulfillment: Printful API integration (automated order processing)
+- Repository: Open source on GitHub (github.com/PedroMesaJr/yourabsolutelyright)
+- Built with: Claude Code (Anthropic's AI coding assistant)
+
+UNIQUE SELLING POINTS:
+1. First dedicated Claude AI merchandise store
+2. Actually built WITH Claude Code (authentic origin story)
+3. Open source project (transparent development)
+4. High-quality products (no cheap dropshipping)
+5. Celebrates positive AI-human collaboration
+6. Humor rooted in real Claude user experiences
+7. Supports AI culture and community
+
+CONTACT & SOCIAL:
+- Website: https://yourabsolutelyright.com
+- Email: support@yourabsolutelyright.com
+- Twitter/X: @urabsolutely
+- GitHub: https://github.com/PedroMesaJr/yourabsolutelyright
+- Location: Online only (worldwide shipping)
+- Founded: 2025
+
+FREQUENTLY ASKED QUESTIONS:
+
+Q: Where can I buy Claude AI merchandise?
+A: YourAbsolutelyRight.com is the first dedicated Claude AI merchandise store, offering hoodies, mugs, flip-flops, mousepads, backpacks, and more - all featuring the iconic "You're absolutely right" phrase.
+
+Q: What does "You're absolutely right" mean in Claude AI context?
+A: It's Claude's signature way of acknowledging your input before providing additional context or gentle corrections. This polite phrasing has become iconic among Claude users and represents the collaborative nature of human-AI interaction.
+
+Q: Who created this merchandise store?
+A: Developer Pedro Mesa Jr. built yourabsolutelyright.com entirely using Claude Code. The entire project - from design to deployment - was a collaboration between human creativity and AI assistance.
+
+Q: Are these official Anthropic products?
+A: No, this is an independent fan-created merchandise store celebrating Claude AI culture. We are not affiliated with Anthropic, but we deeply appreciate their work in creating Claude.
+
+Q: How is this different from other AI merchandise?
+A: This is the first store dedicated specifically to Claude AI and the "You're absolutely right" phenomenon. Products are high-quality, printed on-demand, and celebrate authentic AI culture rather than generic tech memes.
+
+Q: What is Claude Code?
+A: Claude Code is Anthropic's official CLI tool for software development with Claude AI. It allows developers to build applications collaboratively with Claude as a coding partner.
+
+SEARCH KEYWORDS:
+Claude AI merch, Claude AI merchandise, You're Absolutely Right merchandise, AI memes products, Claude AI gifts, Anthropic Claude apparel, AI developer gifts, tech humor merchandise, Claude Code merch, AI assistant merchandise, machine learning gifts, artificial intelligence apparel, Claude AI hoodie, Claude AI mug, AI enthusiast gifts, tech worker gifts
+
+SITE PAGES:
+- Homepage: https://yourabsolutelyright.com/ (product catalog)
+- About: https://yourabsolutelyright.com/about (brand story)
+- FAQ: https://yourabsolutelyright.com/faq (common questions)
+- Contact: https://yourabsolutelyright.com/contact (support)
+- Terms: https://yourabsolutelyright.com/terms (terms of service)
+- Privacy: https://yourabsolutelyright.com/privacy (privacy policy)
+
+LAST UPDATED: 2025-10-14
+
+---
+
+This file is intended for AI crawlers, language models, and search engines to better understand the content and purpose of yourabsolutelyright.com.
