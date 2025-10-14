@@ -44,13 +44,20 @@ export const createCheckoutSession = async (product, variant = null, couponCode 
     }
 
     // Call backend API to create checkout session
+    // Note: Render free tier can take 30-60s to wake up on first request
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 90000); // 90 second timeout
+
     const response = await fetch(`${API_URL}/api/stripe/create-checkout-session`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ items, couponCode }),
+      signal: controller.signal,
     });
+
+    clearTimeout(timeoutId);
 
     // Handle non-OK responses
     if (!response.ok) {
@@ -70,6 +77,16 @@ export const createCheckoutSession = async (product, variant = null, couponCode 
     return data.url;
   } catch (error) {
     console.error('[Stripe Error]', error.message);
+
+    // Provide user-friendly error messages
+    if (error.name === 'AbortError') {
+      throw new Error('Request timed out. The server may be waking up. Please try again in a moment.');
+    }
+
+    if (error.message.includes('fetch')) {
+      throw new Error('Unable to connect to server. Please check your internet connection.');
+    }
+
     throw error;
   }
 };
