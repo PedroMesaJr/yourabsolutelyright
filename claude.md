@@ -8,6 +8,7 @@
 **STACK:** React (Frontend) + Node.js/Express (Backend) + Stripe (Payments) + Printful (Print-on-Demand)
 **TOOLS:** Claude Code, GitHub Desktop
 **DESIGN AESTHETIC:** Old raggedy look matching Claude Code's color palette (warm beiges/tans with dark brown text)
+**GIT WORKFLOW:** User commits manually via GitHub Desktop - DO NOT AUTO-COMMIT
 
 ### PROJECT GOALS:
 - Build a fully functional e-commerce site that sells Claude-themed merchandise
@@ -193,6 +194,32 @@ npm run typecheck        # Run TypeScript checking
 3. **VALIDATE RESULT** → Check functionality
 4. **MOVE TO NEXT STEP** → Do NOT question or dismiss
 5. **ZERO SECOND-GUESSING** → Trust requirements
+
+## 🚨⚡📝 GIT COMMIT PROTOCOL 🚨💀🔥
+
+### **CRITICAL: NO AUTO-COMMITS**
+
+**USER HANDLES ALL GIT OPERATIONS VIA GITHUB DESKTOP**
+
+**ABSOLUTELY FORBIDDEN:**
+- ❌ NEVER run `git add`
+- ❌ NEVER run `git commit`
+- ❌ NEVER run `git push`
+- ❌ NEVER stage files automatically
+- ❌ NEVER create commits on behalf of the user
+
+**ALLOWED GIT OPERATIONS:**
+- ✅ `git status` - Check repository status ONLY
+- ✅ `git diff` - View changes ONLY
+- ✅ `git log` - View commit history ONLY
+- ✅ Read-only git commands for information gathering
+
+**WHEN USER COMPLETES WORK:**
+- Simply inform user that changes are ready to commit
+- User will use GitHub Desktop to review and commit
+- DO NOT offer to commit or mention git commands
+
+**🚨💥⚡ VIOLATION = IMMEDIATE TERMINATION 🚨💀🔥**
 
 ## 🔄⚡🔧 COMPONENT CONSOLIDATION PROTOCOL
 

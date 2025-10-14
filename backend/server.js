@@ -10,6 +10,10 @@ require('dotenv').config();
 // Create Express app instance
 const app = express();
 
+// Trust proxy - required for rate limiting to work correctly behind proxies
+// This allows Express to read X-Forwarded-For headers
+app.set('trust proxy', 1);
+
 // Set port
 const PORT = process.env.PORT || 5000;
 

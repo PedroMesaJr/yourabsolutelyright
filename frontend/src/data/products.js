@@ -62,38 +62,35 @@ export const products = [
   },
   {
     id: 5,
-    name: "Travel Mug",
-    description: "Take your absolutely right attitude on the go with this insulated stainless steel travel mug.",
-    price: 27.99,
-    image: "/images/products/mug-classic.png",
-    printfulId: "68edc70a1d5ba2", // White glossy mug from Printful (3 variants)
+    name: "White Glossy Mug",
+    description: "Take your absolutely right attitude on the go. Premium white glossy ceramic mug - perfect for coffee, tea, or any beverage.",
+    price: 24.99,
+    image: "/images/products/mug/1-front-view.png",
+    images: [
+      "/images/products/mug/1-front-view.png",
+      "/images/products/mug/2-handle-right.png",
+      "/images/products/mug/3-handle-right-2.png",
+      "/images/products/mug/4-lifestyle-donuts.png",
+      "/images/products/mug/5-20oz-front.png",
+    ],
+    // Printful White Glossy Mug - Multiple size variants
+    printfulVariants: [
+      { size: "11 oz", variantId: "68edc70a1d5c38", retailPrice: 24.99 },
+      { size: "15 oz", variantId: "68edc70a1d5c83", retailPrice: 29.99 },
+      { size: "20 oz", variantId: "68edc70a1d5cd4", retailPrice: 34.99 },
+    ],
+    printfulId: "68edc70a1d5c38", // Default to 11 oz
   },
   {
     id: 6,
-    name: "Premium Tee",
-    description: "Upgrade your wardrobe with this premium blend tee. Soft, stylish, and absolutely right.",
-    price: 29.99,
-    image: "/images/products/tee-black.png",
-    printfulId: "placeholder",
-  },
-  {
-    id: 7,
-    name: "Canvas Tote",
-    description: "Carry your essentials and your confidence with this durable canvas tote bag.",
-    price: 22.99,
-    image: "/images/products/mug-classic.png",
-    printfulId: "placeholder",
-  },
-  {
-    id: 8,
-    name: "Zip Hoodie",
+    name: "Oversized Heavyweight Hoodie",
     description: "Full-zip hoodie for maximum comfort and absolutely right vibes. Perfect for any occasion.",
     price: 49.99,
     image: "/images/products/hoodie-gray.png",
     printfulId: "68edc70e7c5cf5", // Oversized heavyweight hoodie from Printful (12 variants)
   },
   {
-    id: 9,
+    id: 7,
     name: "Crop Hoodie",
     description: "Trendy crop hoodie for those absolutely right fashion moments. Comfort meets style.",
     price: 42.99,
@@ -101,7 +98,7 @@ export const products = [
     printfulId: "68edc70a5b9fe5", // Crop Hoodie from Printful (5 variants)
   },
   {
-    id: 10,
+    id: 8,
     name: "Visor",
     description: "Stay cool and absolutely right with this stylish visor. Perfect for sunny days.",
     price: 24.99,
