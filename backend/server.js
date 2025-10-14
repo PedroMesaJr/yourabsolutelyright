@@ -16,6 +16,12 @@ const PORT = process.env.PORT || 5000;
 app.use(cors()); // Enable CORS for frontend communication
 app.use(express.json()); // Parse JSON request bodies
 
+// Import routes
+const stripeRouter = require('./routes/stripe');
+
+// Mount routes
+app.use('/api/stripe', stripeRouter);
+
 // Health check route
 app.get('/health', (_req, res) => {
   res.status(200).send('Server is running');
