@@ -51,14 +51,16 @@
 /* Responsive styles */
 @media (max-width: 768px) {
   .hero {
+    min-height: auto;
     padding-top: 0;
     padding-left: var(--space-6);
     padding-right: var(--space-6);
-    padding-bottom: var(--space-6);
+    padding-bottom: var(--space-4);
   }
 
   .hero-logo {
-    max-width: 90%;
+    max-width: 85%;
+    margin-top: -40px;
   }
 
   .hero-tagline {
@@ -68,6 +70,15 @@
 }
 
 @media (max-width: 480px) {
+  .hero {
+    padding-bottom: var(--space-2);
+  }
+
+  .hero-logo {
+    max-width: 90%;
+    margin-top: -30px;
+  }
+
   .hero-tagline {
     font-size: var(--text-lg);
     margin-top: var(--space-6);

@@ -47,6 +47,7 @@
   padding: 1rem 2rem;
   margin: 0 auto;
   max-width: 100%;
+  -webkit-overflow-scrolling: touch;
 
   /* Subtle scrollbar styling */
   scrollbar-width: thin;
@@ -127,5 +128,31 @@
   .product-carousel::before,
   .product-carousel::after {
     width: 1rem;
+  }
+
+  .scroll-hint {
+    font-size: 0.8125rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .carousel-container {
+    gap: 0.875rem;
+    padding: 0.75rem 0.5rem;
+  }
+
+  .product-carousel::before,
+  .product-carousel::after {
+    width: 0.75rem;
+  }
+
+  .scroll-hint {
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .scroll-hint .arrow {
+    font-size: 1.125rem;
   }
 }

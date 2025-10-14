@@ -100,7 +100,7 @@
   }
 
   .site-name {
-    font-size: 0.625rem;
+    font-size: 0.6875rem;
     letter-spacing: 0.08em;
   }
 
@@ -110,5 +110,20 @@
 
   .nav-link {
     font-size: 0.6875rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .site-name {
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+  }
+
+  .nav-link {
+    font-size: 0.7188rem;
+  }
+
+  .nav-links {
+    gap: 0.875rem;
   }
 }
