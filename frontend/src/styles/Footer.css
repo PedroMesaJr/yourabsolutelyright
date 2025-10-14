@@ -1,0 +1,136 @@
+/* Footer Styles - Simple & Small */
+
+.footer {
+  background: rgba(60, 53, 50, 0.6);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 2rem 2rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.footer-copyright {
+  flex: 0 0 auto;
+}
+
+.footer-copyright p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #C7BFB3;
+  opacity: 0.8;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.footer-link {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #C7BFB3;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 200ms ease, color 200ms ease;
+}
+
+.footer-link:hover {
+  opacity: 1;
+  color: #F4F3EE;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.social-link {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #C7BFB3;
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 200ms ease, color 200ms ease, transform 200ms ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+}
+
+.social-link:hover {
+  opacity: 1;
+  color: #E67E5E;
+  transform: translateY(-2px);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .footer {
+    padding: 1.5rem 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.25rem;
+  }
+
+  .footer-links {
+    gap: 1.25rem;
+  }
+
+  .footer-copyright p {
+    font-size: 0.6875rem;
+  }
+
+  .footer-link {
+    font-size: 0.6875rem;
+  }
+
+  .social-link {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 1.25rem 1rem;
+    margin-top: 2rem;
+  }
+
+  .footer-content {
+    gap: 1rem;
+  }
+
+  .footer-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-copyright p {
+    font-size: 0.625rem;
+  }
+
+  .footer-link {
+    font-size: 0.625rem;
+  }
+
+  .social-link {
+    font-size: 0.75rem;
+  }
+}
