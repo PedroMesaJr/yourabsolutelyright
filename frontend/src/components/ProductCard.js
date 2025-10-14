@@ -435,14 +435,14 @@ function ProductCard({ product }) {
               <>
                 <button
                   className="zoom-nav zoom-prev"
-                  onClick={prevImage}
+                  onClick={(e) => { e.stopPropagation(); prevImage(); }}
                   disabled={isTransitioning}
                 >
                   ‹
                 </button>
                 <button
                   className="zoom-nav zoom-next"
-                  onClick={nextImage}
+                  onClick={(e) => { e.stopPropagation(); nextImage(); }}
                   disabled={isTransitioning}
                 >
                   ›
