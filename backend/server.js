@@ -150,14 +150,13 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res)
         console.log('[Webhook] Session ID:', session.id);
         console.log('[Webhook] Payment Status:', session.payment_status);
 
-        // TODO: Uncomment once Printful products are configured
-        // This will automatically create orders in Printful when payments succeed
-        // const printfulOrder = await createPrintfulOrder(customer, orderItems);
-        // if (printfulOrder.success) {
-        //   console.log('[Webhook] Printful order created:', printfulOrder.orderId);
-        // } else {
-        //   console.error('[Webhook] Printful order failed:', printfulOrder.error);
-        // }
+        // Automatically create orders in Printful when payments succeed
+        const printfulOrder = await createPrintfulOrder(customer, orderItems);
+        if (printfulOrder.success) {
+          console.log('[Webhook] ✅ Printful order created:', printfulOrder.orderId);
+        } else {
+          console.error('[Webhook] ❌ Printful order failed:', printfulOrder.error);
+        }
       } else {
         console.warn('[Webhook] ⚠️ Missing customer address or order items');
       }
