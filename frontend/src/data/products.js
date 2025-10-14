@@ -27,11 +27,11 @@ export const products = [
       "/images/products/flip-flops/8-lifestyle.png",
       "/images/products/flip-flops/9-lifestyle-2.png",
     ],
-    // Printful Sublimation Flip-Flops - Multiple variants (sizes)
+    // Printful Sublimation Flip-Flops - 3 size variants
     printfulVariants: [
-      { size: "S", variantId: "68edc70ad35415", retailPrice: 18.38 },
-      { size: "M", variantId: "68edc70ad35473", retailPrice: 18.38 },
-      { size: "L", variantId: "68edc70ad354c8", retailPrice: 18.38 },
+      { size: "S", variantId: "68edc70ad35415", retailPrice: 54.99 },
+      { size: "M", variantId: "68edc70ad35473", retailPrice: 54.99 },
+      { size: "L", variantId: "68edc70ad354c8", retailPrice: 54.99 },
     ],
     printfulId: "68edc70ad35415", // Default to S size
   },
@@ -93,9 +93,29 @@ export const products = [
     id: 7,
     name: "Crop Hoodie",
     description: "Trendy crop hoodie for those absolutely right fashion moments. Comfort meets style.",
-    price: 42.99,
-    image: "/images/products/hoodie-gray.png",
-    printfulId: "68edc70a5b9fe5", // Crop Hoodie from Printful (5 variants)
+    price: 110.50,
+    image: "/images/products/crop-hoodie/1-front.png",
+    images: [
+      "/images/products/crop-hoodie/1-front.png",
+      "/images/products/crop-hoodie/2-back.png",
+      "/images/products/crop-hoodie/3-front-2.png",
+      "/images/products/crop-hoodie/4-back-2.png",
+      "/images/products/crop-hoodie/5-front-3.png",
+      "/images/products/crop-hoodie/6-back-3.png",
+      "/images/products/crop-hoodie/7-lifestyle.png",
+      "/images/products/crop-hoodie/8-lifestyle-2.png",
+      "/images/products/crop-hoodie/9-lifestyle-3.png",
+      "/images/products/crop-hoodie/10-lifestyle-4.png",
+    ],
+    // Printful Bella + Canvas 7502 Women's Fleece Crop Hoodie - 5 size variants
+    printfulVariants: [
+      { size: "S", variantId: "68edc70a5ba064", retailPrice: 110.50 },
+      { size: "M", variantId: "68edc70a5ba0b6", retailPrice: 110.50 },
+      { size: "L", variantId: "68edc70a5ba0f7", retailPrice: 110.50 },
+      { size: "XL", variantId: "68edc70a5ba144", retailPrice: 110.50 },
+      { size: "2XL", variantId: "68edc70a5ba184", retailPrice: 117.99 },
+    ],
+    printfulId: "68edc70a5ba064", // Default to S size
   },
   {
     id: 8,

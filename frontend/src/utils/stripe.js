@@ -7,27 +7,37 @@ const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 /**
  * Creates a Stripe checkout session via backend API
  * @param {Object} product - Product data (id, name, description, price, image)
+ * @param {Object} variant - Optional variant data (size, variantId, retailPrice)
  * @returns {Promise<string>} Stripe checkout URL
  */
-export const createCheckoutSession = async (product) => {
+export const createCheckoutSession = async (product, variant = null) => {
   try {
     // Validate product data
     if (!product || !product.name || !product.price) {
       throw new Error('Invalid product data');
     }
 
+    // Use variant price if variant is selected, otherwise use base product price
+    const price = variant ? variant.retailPrice : product.price;
+    const productName = variant ? `${product.name} (${variant.size})` : product.name;
+
     // Format product data for backend
     const items = [
       {
-        name: product.name,
+        name: productName,
         description: product.description || '',
-        price: product.price,
+        price: price,
         quantity: 1,
         image: product.image || '',
+        printfulId: variant ? variant.variantId : product.printfulId,
+        size: variant ? variant.size : null,
       },
     ];
 
-    console.log('[Stripe] Creating checkout session for:', product.name);
+    console.log('[Stripe] Creating checkout session for:', productName);
+    if (variant) {
+      console.log('[Stripe] Selected variant:', variant);
+    }
 
     // Call backend API to create checkout session
     const response = await fetch(`${API_URL}/api/stripe/create-checkout-session`, {

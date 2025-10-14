@@ -119,7 +119,7 @@
   user-select: none;
   -webkit-user-select: none;
   position: relative;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 /* Hide scrollbar */

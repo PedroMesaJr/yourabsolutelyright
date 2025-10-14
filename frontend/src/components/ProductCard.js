@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import ReactDOM from 'react-dom';
 import { createCheckoutSession } from '../utils/stripe';
 import LoadingSpinner from './LoadingSpinner';
 import '../styles/ProductCard.css';
@@ -10,8 +11,13 @@ function ProductCard({ product }) {
   const [showZoom, setShowZoom] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [showSizeSelector, setShowSizeSelector] = useState(false);
+  const [selectedVariant, setSelectedVariant] = useState(null);
   const imageRef = useRef(null);
   const cardRef = useRef(null);
+
+  // Check if product has size variants
+  const hasVariants = product.printfulVariants && product.printfulVariants.length > 1;
 
   // Check if product has multiple images (gallery)
   const hasGallery = product.images && product.images.length > 1;
@@ -92,6 +98,17 @@ function ProductCard({ product }) {
   };
 
   const handleBuyNow = async () => {
+    // If product has variants, show size selector first
+    if (hasVariants) {
+      setShowSizeSelector(true);
+      return;
+    }
+
+    // Otherwise, proceed to checkout directly
+    await proceedToCheckout();
+  };
+
+  const proceedToCheckout = async (variant = null) => {
     try {
       // Reset error state
       setError(null);
@@ -100,9 +117,12 @@ function ProductCard({ product }) {
       setLoading(true);
 
       console.log('[ProductCard] Buy Now clicked:', product.name);
+      if (variant) {
+        console.log('[ProductCard] Selected variant:', variant);
+      }
 
-      // Create checkout session
-      const checkoutUrl = await createCheckoutSession(product);
+      // Create checkout session with selected variant
+      const checkoutUrl = await createCheckoutSession(product, variant);
 
       // Redirect to Stripe Checkout
       console.log('[ProductCard] Redirecting to checkout:', checkoutUrl);
@@ -111,21 +131,24 @@ function ProductCard({ product }) {
       console.error('[ProductCard] Checkout error:', err.message);
       setError(err.message || 'Failed to start checkout. Please try again.');
       setLoading(false);
+      setShowSizeSelector(false);
     }
   };
 
+  const handleVariantSelect = (variant) => {
+    setSelectedVariant(variant);
+    setShowSizeSelector(false);
+    proceedToCheckout(variant);
+  };
+
   return (
-    <div className="product-card" ref={cardRef}>
-      <div
-        className="product-image-container"
-        onMouseEnter={preventCarouselScroll}
-        onMouseLeave={preventCarouselScroll}
-      >
-        <picture>
-          <source
-            srcSet={displayImage.replace(/\.(png|jpg|jpeg)$/i, '.webp')}
-            type="image/webp"
-          />
+    <>
+      <div className="product-card" ref={cardRef}>
+        <div
+          className="product-image-container"
+          onMouseEnter={preventCarouselScroll}
+          onMouseLeave={preventCarouselScroll}
+        >
           <img
             ref={imageRef}
             src={displayImage}
@@ -134,89 +157,72 @@ function ProductCard({ product }) {
             onClick={(e) => { e.stopPropagation(); setShowZoom(true); }}
             onError={(e) => {
               console.error('[ProductCard] Image failed to load:', displayImage);
-              e.target.style.display = 'none';
+              // Don't hide the image - just log the error
             }}
             onLoad={() => {
-              console.log('[ProductCard] Image loaded:', displayImage);
               setImageLoaded(true);
             }}
             loading="lazy"
             draggable={false}
           />
-        </picture>
-        {hasGallery && (
-          <>
-            <button
-              className="gallery-nav gallery-prev"
-              onClick={(e) => { e.stopPropagation(); prevImage(); }}
-              onMouseDown={preventCarouselScroll}
-              disabled={isTransitioning}
-            >
-              ‹
-            </button>
-            <button
-              className="gallery-nav gallery-next"
-              onClick={(e) => { e.stopPropagation(); nextImage(); }}
-              onMouseDown={preventCarouselScroll}
-              disabled={isTransitioning}
-            >
-              ›
-            </button>
-            <div className="gallery-dots" onMouseDown={preventCarouselScroll}>
-              {product.images.map((_, index) => (
-                <span
-                  key={index}
-                  className={`gallery-dot ${index === currentImageIndex ? 'active' : ''} ${isTransitioning ? 'disabled' : ''}`}
-                  onClick={(e) => { e.stopPropagation(); goToImage(index); }}
-                />
-              ))}
-            </div>
-          </>
-        )}
-        <div className="zoom-hint" onClick={(e) => { e.stopPropagation(); setShowZoom(true); }}>
-          🔍 Click to zoom
-        </div>
-      </div>
-
-      {showZoom && (
-        <div className="zoom-modal" onClick={() => setShowZoom(false)}>
-          <div className="zoom-modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="zoom-close" onClick={() => setShowZoom(false)}>×</button>
-            <picture>
-              <source
-                srcSet={displayImage.replace(/\.(png|jpg|jpeg)$/i, '.webp')}
-                type="image/webp"
-              />
-              <img
-                src={displayImage}
-                alt={product.name}
-                className={`zoom-image ${imageLoaded ? 'loaded' : 'loading'}`}
-                draggable={false}
-              />
-            </picture>
-            {hasGallery && (
-              <>
-                <button
-                  className="zoom-nav zoom-prev"
-                  onClick={prevImage}
-                  disabled={isTransitioning}
-                >
-                  ‹
-                </button>
-                <button
-                  className="zoom-nav zoom-next"
-                  onClick={nextImage}
-                  disabled={isTransitioning}
-                >
-                  ›
-                </button>
-                <div className="zoom-counter">{currentImageIndex + 1} / {product.images.length}</div>
-              </>
-            )}
+          {hasGallery && (
+            <>
+              <button
+                className="gallery-nav gallery-prev"
+                onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                onMouseDown={preventCarouselScroll}
+                disabled={isTransitioning}
+              >
+                ‹
+              </button>
+              <button
+                className="gallery-nav gallery-next"
+                onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                onMouseDown={preventCarouselScroll}
+                disabled={isTransitioning}
+              >
+                ›
+              </button>
+              <div className="gallery-dots" onMouseDown={preventCarouselScroll}>
+                {product.images.map((_, index) => (
+                  <span
+                    key={index}
+                    className={`gallery-dot ${index === currentImageIndex ? 'active' : ''} ${isTransitioning ? 'disabled' : ''}`}
+                    onClick={(e) => { e.stopPropagation(); goToImage(index); }}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+          <div className="zoom-hint" onClick={(e) => { e.stopPropagation(); setShowZoom(true); }}>
+            🔍 Click to zoom
           </div>
         </div>
-      )}
-      <div className="product-info">
+
+        {showSizeSelector && (
+        <div className="size-modal" onClick={() => setShowSizeSelector(false)}>
+          <div className="size-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="size-modal-close" onClick={() => setShowSizeSelector(false)}>×</button>
+            <h3 className="size-modal-title">Select Size</h3>
+            <p className="size-modal-product">{product.name}</p>
+            <div className="size-options">
+              {product.printfulVariants.map((variant) => (
+                <button
+                  key={variant.variantId}
+                  className="size-option"
+                  onClick={() => handleVariantSelect(variant)}
+                  disabled={loading}
+                >
+                  <span className="size-name">{variant.size}</span>
+                  <span className="size-price">${variant.retailPrice}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+        )}
+
+        <div className="product-info">
         <h3 className="product-name">{product.name}</h3>
         <p className="product-description">{product.description}</p>
         {error && (
@@ -256,8 +262,44 @@ function ProductCard({ product }) {
           </svg>
           <span>Secured by Stripe</span>
         </div>
+        </div>
       </div>
-    </div>
+
+      {/* Zoom modal rendered outside the card using React Portal */}
+      {showZoom && ReactDOM.createPortal(
+        <div className="zoom-modal" onClick={() => setShowZoom(false)}>
+          <div className="zoom-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="zoom-close" onClick={() => setShowZoom(false)}>×</button>
+            <img
+              src={displayImage}
+              alt={product.name}
+              className={`zoom-image ${imageLoaded ? 'loaded' : 'loading'}`}
+              draggable={false}
+            />
+            {hasGallery && (
+              <>
+                <button
+                  className="zoom-nav zoom-prev"
+                  onClick={prevImage}
+                  disabled={isTransitioning}
+                >
+                  ‹
+                </button>
+                <button
+                  className="zoom-nav zoom-next"
+                  onClick={nextImage}
+                  disabled={isTransitioning}
+                >
+                  ›
+                </button>
+                <div className="zoom-counter">{currentImageIndex + 1} / {product.images.length}</div>
+              </>
+            )}
+          </div>
+        </div>,
+        document.body
+      )}
+    </>
   );
 }
 
