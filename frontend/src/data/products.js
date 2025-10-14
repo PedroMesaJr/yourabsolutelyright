@@ -2,15 +2,16 @@
 // Each product will be fulfilled via Printful
 
 export const products = [
-  {
-    id: 1,
-    name: "Premium Mousepad",
-    shortDescription: "You're absolutely right to upgrade your desk setup. Smooth surface, non-slip base, perfect for work or gaming.",
-    description: "You're absolutely right to upgrade your desk setup.\n\nIf you've ever worked with Claude AI, you know the experience: precise, thoughtful, and always guiding you in the right direction. This premium mousepad brings that same philosophy to your workspace.\n\nPerfect for:\n- AI developers coding with Claude\n- Tech workers who appreciate AI humor\n- Anyone building projects with Claude Code\n- Gamers who need precision and style\n\nFeatures a smooth surface for accurate mouse tracking and a non-slip rubber base that stays in place during intense coding sessions. The \"You're Absolutely Right\" design serves as a daily reminder that even when Claude corrects you, it does so with respect.\n\nHigh-quality sublimation printing ensures the design won't fade, even after months of use. Desk-sized dimensions provide ample space for both work and play.\n\nBuilt for developers, designers, and AI enthusiasts who spend hours at their desk and want their workspace to reflect their passion for artificial intelligence and human-AI collaboration.",
-    price: 49.99,
-    image: "/images/products/mousepad.png",
-    printfulId: "68edc70784ea14", // Mouse pad from Printful
-  },
+  // TEMPORARILY DISABLED: Premium Mousepad (id: 1)
+  // {
+  //   id: 1,
+  //   name: "Premium Mousepad",
+  //   shortDescription: "You're absolutely right to upgrade your desk setup. Smooth surface, non-slip base, perfect for work or gaming.",
+  //   description: "You're absolutely right to upgrade your desk setup.\n\nIf you've ever worked with Claude AI, you know the experience: precise, thoughtful, and always guiding you in the right direction. This premium mousepad brings that same philosophy to your workspace.\n\nPerfect for:\n- AI developers coding with Claude\n- Tech workers who appreciate AI humor\n- Anyone building projects with Claude Code\n- Gamers who need precision and style\n\nFeatures a smooth surface for accurate mouse tracking and a non-slip rubber base that stays in place during intense coding sessions. The \"You're Absolutely Right\" design serves as a daily reminder that even when Claude corrects you, it does so with respect.\n\nHigh-quality sublimation printing ensures the design won't fade, even after months of use. Desk-sized dimensions provide ample space for both work and play.\n\nBuilt for developers, designers, and AI enthusiasts who spend hours at their desk and want their workspace to reflect their passion for artificial intelligence and human-AI collaboration.",
+  //   price: 49.99,
+  //   image: "/images/products/mousepad.png",
+  //   printfulId: "68edc70784ea14", // Mouse pad from Printful
+  // },
   {
     id: 2,
     name: "Premium Flip-Flops",
