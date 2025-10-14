@@ -1,315 +1,303 @@
-# YOURABSOLUTELYRIGHT.COM
+<div align="center">
+  <img src="frontend/public/images/hero-logo.png" alt="You're Absolutely Right" width="400"/>
 
-E-commerce merch site selling products featuring "You're absolutely right." - the phrase Claude AI always says.
+  <h1>You're Absolutely Right.</h1>
 
-## 🎯 Project Overview
+  <p><strong>Merch for when Claude validates your existence.</strong></p>
 
-**Concept:** Humorous merchandise featuring Claude's iconic phrase
-**Stack:** React (Frontend) + Node.js/Express (Backend) + Stripe + Printful
-**Design:** Old raggedy aesthetic matching Claude Code's warm beige/tan color palette
-**Status:** ✅ Production-ready
+  <p>
+    <a href="https://yourabsolutelyright.vercel.app">🛍️ Visit Store</a> •
+    <a href="#why-this-exists">Why Though?</a> •
+    <a href="#tech-stack">Tech Stack</a> •
+    <a href="#for-developers">For Developers</a>
+  </p>
 
-## 🚀 Quick Start
-
-### Prerequisites
-- Node.js (v16 or higher)
-- npm or yarn
-- Stripe account (for payments)
-- Printful account (for fulfillment)
-
-### Installation
-
-1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/yourabsolutelyright.git
-cd yourabsolutelyright
-```
-
-2. **Install dependencies**
-```bash
-# Install backend dependencies
-cd backend
-npm install
-
-# Install frontend dependencies
-cd ../frontend
-npm install
-```
-
-3. **Configure environment variables**
-
-**Backend** - Create `backend/.env` from `backend/.env.example`:
-```bash
-# API Keys
-STRIPE_SECRET_KEY=sk_test_your_stripe_secret_key
-STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_public_key
-STRIPE_WEBHOOK_SECRET=whsec_your_webhook_secret
-PRINTFUL_API_KEY=your_printful_api_key
-
-# Frontend URL for CORS and redirects
-FRONTEND_URL=http://localhost:3000
-
-# Email Configuration (Optional)
-SUPPORT_EMAIL=support@yourabsolutelyright.com
-# For production, uncomment and configure:
-# SMTP_HOST=smtp.gmail.com
-# SMTP_PORT=587
-# SMTP_SECURE=false
-# SMTP_USER=your_email@gmail.com
-# SMTP_PASS=your_app_password
-```
-
-**Frontend** - Create `frontend/.env` from `frontend/.env.example`:
-```bash
-REACT_APP_STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_public_key
-```
-
-4. **Start the development servers**
-
-**Terminal 1 - Backend:**
-```bash
-cd backend
-npm start
-# Server runs on http://localhost:5000
-```
-
-**Terminal 2 - Frontend:**
-```bash
-cd frontend
-npm start
-# App opens at http://localhost:3000
-```
-
-## 📁 Project Structure
-
-```
-yourabsolutelyright/
-├── frontend/                 # React application
-│   ├── src/
-│   │   ├── components/      # React components
-│   │   │   ├── Hero.js      # Landing page hero section
-│   │   │   ├── ProductCarousel.js  # Auto-scrolling product carousel
-│   │   │   ├── ProductCard.js      # Individual product cards
-│   │   │   ├── Navigation.js       # Site navigation
-│   │   │   ├── Footer.js           # Site footer
-│   │   │   └── LoadingSpinner.js   # Reusable loading indicator
-│   │   ├── pages/           # Page components
-│   │   │   ├── About.js     # About page
-│   │   │   ├── FAQ.js       # FAQ page
-│   │   │   ├── Terms.js     # Terms of service
-│   │   │   ├── Privacy.js   # Privacy policy
-│   │   │   ├── Contact.js   # Contact form
-│   │   │   ├── Success.js   # Payment success page
-│   │   │   └── Cancel.js    # Payment cancelled page
-│   │   ├── styles/          # CSS files
-│   │   ├── utils/           # Utility functions
-│   │   │   └── stripe.js    # Stripe checkout integration
-│   │   ├── data/            # Product data
-│   │   └── App.js           # Main app component with routing
-│   ├── public/              # Static assets
-│   │   ├── products/        # Product images (optimized)
-│   │   └── images/          # Site images and logos
-│   └── package.json
-│
-├── backend/                 # Node.js/Express server
-│   ├── routes/              # API route handlers
-│   │   ├── stripe.js        # Stripe payment endpoints
-│   │   ├── printful.js      # Printful order endpoints
-│   │   └── contact.js       # Contact form endpoint
-│   ├── server.js            # Express server entry point
-│   ├── .env                 # Environment variables (not in git)
-│   └── package.json
-│
-├── TESTING.md               # Comprehensive testing checklist
-├── PERFORMANCE.md           # Performance optimization report
-└── README.md                # This file
-```
-
-## 🛠️ Technology Stack
-
-### Frontend
-- **React** 19.2.0 - UI framework
-- **React Router** 7.9.4 - Client-side routing
-- **CSS** - Custom styling with old raggedy aesthetic
-- **Sharp** - Image optimization
-
-### Backend
-- **Node.js** - JavaScript runtime
-- **Express** 5.1.0 - Web framework
-- **Stripe** 19.1.0 - Payment processing
-- **Nodemailer** 7.0.9 - Email service
-- **CORS** - Cross-origin resource sharing
-- **express-rate-limit** - API rate limiting
-
-### External Services
-- **Stripe** - Payment processing
-- **Printful API** - Print-on-demand fulfillment
-- **Ethereal Email** - Test email service (development)
-
-## 🎨 Features
-
-### Implemented Features ✅
-- **Hero Section** - "You're" text with subtle Claude logo background
-- **Product Carousel** - Horizontal auto-scrolling with infinite loop
-- **Stripe Checkout** - One-click payment flow
-- **Webhook Integration** - Automated order processing
-- **Contact Form** - Professional email-based support system
-- **Static Pages** - About, FAQ, Terms, Privacy
-- **Responsive Design** - Mobile, tablet, desktop breakpoints
-- **Loading States** - Spinners for async operations
-- **Error Handling** - User-friendly error messages
-- **Image Optimization** - WebP + PNG fallback, lazy loading
-- **Security** - Rate limiting, input validation, CORS
-
-### Pending Configuration 🔄
-- **Printful Order Creation** - Awaiting product configuration (see `server.js:129-136`)
-- **Production SMTP** - Configure real email service (currently uses test service)
-
-## 📡 API Endpoints
-
-### Backend (http://localhost:5000)
-
-#### Stripe Routes
-- `POST /api/stripe/create-checkout-session` - Create Stripe checkout
-- `GET /api/stripe/session/:sessionId` - Get session details
-
-#### Printful Routes
-- `POST /api/printful/products` - List Printful products
-- `POST /api/printful/create-order` - Create Printful order
-
-#### Contact Routes
-- `POST /api/contact` - Submit contact form
-
-#### Webhooks
-- `POST /webhook` - Stripe webhook for order processing
-
-#### Health Check
-- `GET /health` - Server health status
-
-## 🧪 Testing
-
-Run the testing checklist:
-```bash
-# See TESTING.md for full checklist
-cat TESTING.md
-```
-
-**Key Testing Areas:**
-- ✅ Cross-browser compatibility (Chrome, Firefox, Safari, Edge)
-- ✅ Mobile responsiveness (480px, 375px breakpoints)
-- ✅ Payment flow (Stripe integration)
-- ✅ Contact form (email delivery)
-- ✅ Security (CORS, rate limiting, validation)
-- ✅ Performance (image optimization, lazy loading)
-
-## 📊 Performance
-
-Performance optimization results available in `PERFORMANCE.md`:
-- Image compression: 60-80% reduction
-- WebP support with PNG fallback
-- Lazy loading for below-fold images
-- Bundle size optimization
-
-## 🔒 Security Features
-
-- **Environment Variables** - Sensitive data in .env (gitignored)
-- **CORS Configuration** - Restricted to FRONTEND_URL
-- **Rate Limiting** - 100 requests/15min (general), 10/15min (payments)
-- **Input Validation** - Server-side validation on all endpoints
-- **Webhook Verification** - Stripe signature validation
-- **SQL Injection Prevention** - No direct SQL queries (using Stripe/Printful APIs)
-
-## 🚢 Deployment
-
-### Environment Setup
-
-**Frontend (Vercel/Netlify):**
-1. Build command: `npm run build`
-2. Publish directory: `build`
-3. Environment variables:
-   - `REACT_APP_STRIPE_PUBLISHABLE_KEY`
-
-**Backend (Heroku/Railway/Render):**
-1. Start command: `npm start`
-2. Environment variables:
-   - `STRIPE_SECRET_KEY`
-   - `STRIPE_PUBLISHABLE_KEY`
-   - `STRIPE_WEBHOOK_SECRET`
-   - `PRINTFUL_API_KEY`
-   - `FRONTEND_URL` (production URL)
-   - `SUPPORT_EMAIL`
-   - `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` (for production emails)
-
-### Production Checklist
-
-- [ ] Configure production SMTP for contact form emails
-- [ ] Set up Stripe webhook endpoint in production
-- [ ] Configure Printful products and enable auto-order creation
-- [ ] Update FRONTEND_URL to production domain
-- [ ] Test payment flow in production
-- [ ] Test webhook delivery
-- [ ] Monitor server logs
-
-## 🐛 Known Issues & Future Improvements
-
-### Current Limitations
-- Contact form uses test email service (ethereal.email) - needs production SMTP
-- Printful order creation commented out - awaiting product configuration
-- No admin dashboard (orders managed via Stripe/Printful dashboards)
-
-### Future Enhancements
-- [ ] Product reviews system
-- [ ] Newsletter signup
-- [ ] Analytics tracking (Google Analytics)
-- [ ] SEO optimization (meta tags, sitemap.xml)
-- [ ] Admin dashboard for order management
-- [ ] Discount code system
-- [ ] Product inventory tracking
-
-## 📝 Development Notes
-
-### Adding New Products
-
-1. Add product images to `frontend/public/products/`
-2. Optimize images: `npm run optimize-images` (frontend)
-3. Add product data to `frontend/src/data/products.js`
-4. Configure corresponding Printful product
-5. Update Printful product ID in data
-
-### Stripe Webhook Setup
-
-1. Install Stripe CLI: https://stripe.com/docs/stripe-cli
-2. Forward webhooks to local server:
-   ```bash
-   stripe listen --forward-to localhost:5000/webhook
-   ```
-3. Copy webhook secret to `.env` as `STRIPE_WEBHOOK_SECRET`
-
-### Email Configuration
-
-**Development:** Uses ethereal.email (test service, auto-configured)
-**Production:** Configure SMTP settings in `.env`
-
-Popular SMTP providers:
-- Gmail: smtp.gmail.com:587 (requires app password)
-- SendGrid: smtp.sendgrid.net:587
-- Mailgun: smtp.mailgun.org:587
-- AWS SES: email-smtp.us-east-1.amazonaws.com:587
-
-## 📄 License
-
-This project is private and proprietary.
-
-## 🤝 Contributing
-
-This is a personal project. Not accepting contributions at this time.
-
-## 📧 Support
-
-For issues or questions, contact: support@yourabsolutelyright.com
+  <p>
+    <img src="https://img.shields.io/badge/Built_with-Claude_Code-E67E5E?style=for-the-badge" alt="Built with Claude Code"/>
+    <img src="https://img.shields.io/badge/Vibes-Absolutely_Right-F4F3EE?style=for-the-badge" alt="Vibes: Absolutely Right"/>
+  </p>
+</div>
 
 ---
 
-**Built with Claude Code 🤖**
-**Status:** Production-ready (pending SMTP configuration)
-**Last Updated:** October 2025
+## 🤖 What Is This?
+
+Ever notice how Claude AI always says **"You're absolutely right"** before gently correcting you?
+
+Yeah, we did too.
+
+So we made merch about it. Because sometimes you need a mug that validates you, even when you're wrong.
+
+### Products Include:
+- **Hoodies** for those absolutely right moments
+- **Mugs** to take your correct attitude on the go
+- **Flip-flops** to walk confidently knowing you're right
+- **Backpacks** to carry everything with absolute confidence
+- **Mousepads** because you're right to upgrade your desk
+- And more absolutely right accessories
+
+---
+
+## 💡 Why This Exists
+
+Look, we're not here to change the world. We're here to put "You're absolutely right" on things you can buy.
+
+That's it. That's the business model.
+
+**The Timeline:**
+1. Started as a joke
+2. Became a website
+3. Now it's a real store selling real products
+4. You're absolutely right to be here
+
+---
+
+## 🎨 The Vibe
+
+This site matches Claude's aesthetic:
+- **Warm, aged paper backgrounds** (#F4F3EE)
+- **Coral accent colors** from the Claude logo
+- **Clean typography** with personality
+- **Minimalist but cozy** design
+- **Humor in the content**, not flashy design
+
+Built with the same thoughtful care Claude puts into every response. Except we're selling hoodies.
+
+---
+
+## 🏗️ Tech Stack
+
+### Frontend
+- **React 19** - Because we're modern like that
+- **React Router** - For those sweet page transitions
+- **Custom CSS** - No frameworks, just vibes
+- **Vercel** - Deployed faster than Claude can say "absolutely right"
+
+### Backend
+- **Node.js + Express** - Classic and reliable
+- **Stripe API** - Secure payments (we don't see your card)
+- **Printful API** - Print-on-demand (we don't run a warehouse)
+- **Railway** - Backend hosting
+
+### Security Features
+- Rate limiting (100 req/15min)
+- Stripe webhook verification
+- Input validation on everything
+- CORS configured properly
+- No secrets in git (we checked twice)
+
+---
+
+## 🚀 For Developers
+
+### Why You Should Fork This:
+
+✅ **Production-ready e-commerce stack**
+- Fully functional Stripe integration
+- Printful fulfillment automation
+- Product catalog with variant support
+- Coupon system included
+
+✅ **Clean, modern codebase**
+- Well-organized component structure
+- Responsive design patterns
+- Reusable utility functions
+- Security best practices built-in
+
+✅ **Actually makes money**
+- Real payments processing
+- Automated order fulfillment
+- Customer email notifications
+- No inventory management needed
+
+### Quick Start
+
+```bash
+# Clone the repo
+git clone https://github.com/yourusername/yourabsolutelyright.git
+cd yourabsolutelyright
+
+# Install dependencies
+cd backend && npm install
+cd ../frontend && npm install
+
+# Set up environment variables (see below)
+
+# Run locally
+cd backend && npm start      # Backend: http://localhost:5000
+cd frontend && npm start     # Frontend: http://localhost:3000
+```
+
+### Environment Setup
+
+**Backend** (`backend/.env`):
+```env
+STRIPE_SECRET_KEY=sk_test_your_key
+STRIPE_PUBLISHABLE_KEY=pk_test_your_key
+STRIPE_WEBHOOK_SECRET=whsec_your_secret
+PRINTFUL_API_KEY=your_printful_key
+FRONTEND_URL=http://localhost:3000
+```
+
+**Frontend** (`frontend/.env`):
+```env
+REACT_APP_BACKEND_URL=http://localhost:5000
+```
+
+See `.env.example` files for full reference.
+
+---
+
+## 📦 Project Structure
+
+```
+yourabsolutelyright/
+├── frontend/
+│   ├── src/
+│   │   ├── components/       # Reusable React components
+│   │   ├── pages/           # Page-level components
+│   │   ├── styles/          # CSS modules (old raggedy aesthetic)
+│   │   ├── data/            # Product catalog
+│   │   └── utils/           # Stripe helpers, utilities
+│   └── public/              # Images, static assets
+│
+├── backend/
+│   ├── routes/              # API endpoints (stripe, printful, contact)
+│   ├── controllers/         # Business logic
+│   └── server.js           # Express app with security middleware
+│
+├── Mockups/                 # Product mockup images
+└── design-inspiration/      # Design references & tokens
+```
+
+---
+
+## 🛠️ Features
+
+### For Customers:
+- 🖼️ **Image galleries** with zoom functionality
+- 📱 **Responsive design** - looks great on all devices
+- 💳 **Stripe Checkout** - secure, trusted payment flow
+- 🎟️ **Coupon codes** - discount support (`CLAUDE30` for 30% off)
+- 📦 **Size variants** - select sizes for apparel
+- ✉️ **Order confirmations** - automatic email notifications
+
+### For Developers:
+- 🔒 **Security-first** - rate limiting, input validation, webhook verification
+- 🚀 **Easy deployment** - Vercel + Railway ready
+- 📝 **Well-documented** - comments explain the why, not just the what
+- 🎨 **Design system** - reusable color tokens and spacing
+- 🧪 **Production-tested** - this site actually sells products
+
+---
+
+## 🔐 Security
+
+We take security seriously (even if we joke about everything else):
+
+- ✅ Environment variables for all secrets
+- ✅ Stripe webhook signature verification
+- ✅ Rate limiting on payment endpoints (10 req/15min)
+- ✅ Input validation on all API calls
+- ✅ CORS properly configured
+- ✅ No API keys committed to git
+- ✅ Security audit passed (see `docs-internal/`)
+
+---
+
+## 📈 Why Open Source?
+
+**Because you're absolutely right to learn from working code.**
+
+This isn't a tutorial. This isn't a starter template. This is a **real, working e-commerce site** that processes real payments and ships real products.
+
+Use it to:
+- Learn modern React patterns
+- Understand Stripe integration
+- See production security practices
+- Build your own merch store
+- Launch your meme-based business empire
+
+We built this with Claude Code. You can too.
+
+---
+
+## 🎯 Use Cases
+
+Fork this if you want to sell:
+- Band merch
+- Podcast swag
+- YouTuber merchandise
+- Meme products
+- Community gear
+- Literally anything on Printful's catalog
+
+Just swap the products and colors. The infrastructure is solid.
+
+---
+
+## 🤝 Contributing
+
+Found a bug? Have a feature idea? Want to improve the copy?
+
+1. Fork the repo
+2. Make your changes
+3. Submit a PR
+4. We'll probably merge it
+
+**Guidelines:**
+- Keep the vibe (casual, funny, honest)
+- Maintain security standards
+- Test your changes locally
+- No `console.log()` in production code
+
+---
+
+## 📝 License
+
+**MIT License** - Do whatever you want with this code.
+
+Build your own store. Copy the design. Steal the jokes. We're not precious about it.
+
+Just don't claim you invented the phrase "You're absolutely right." Claude said it first.
+
+---
+
+## 💬 The Fine Print
+
+This site is:
+- ✅ Not affiliated with Anthropic
+- ✅ Not endorsed by Claude AI
+- ✅ Just a funny merch store
+- ✅ Actually functional though
+
+If Anthropic asks us to take it down, we probably will. Until then, we're vibing.
+
+---
+
+## 🔗 Links
+
+- **Live Site:** [yourabsolutelyright.com](https://yourabsolutelyright.vercel.app)
+- **Issues:** [Report bugs](https://github.com/yourusername/yourabsolutelyright/issues)
+- **Contact:** support@yourabsolutelyright.com
+
+---
+
+<div align="center">
+  <h3>Built with Claude Code 🤖</h3>
+  <p>Because of course it was.</p>
+
+  <p><strong>You're absolutely right to check out the code. ✨</strong></p>
+
+  <br/>
+
+  <p>
+    <a href="https://yourabsolutelyright.vercel.app">Visit Store</a> •
+    <a href="https://github.com/yourusername/yourabsolutelyright/issues">Report Issue</a> •
+    <a href="#tech-stack">Tech Docs</a>
+  </p>
+
+  <br/>
+
+  <sub>Made with ❤️ for the AI community</sub>
+</div>
