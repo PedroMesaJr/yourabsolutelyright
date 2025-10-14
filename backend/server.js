@@ -41,7 +41,13 @@ const paymentLimiter = rateLimit({
 });
 
 // Middleware setup
-app.use(cors()); // Enable CORS for frontend communication
+// CORS configuration - allows frontend to communicate with backend
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  optionsSuccessStatus: 200,
+  credentials: true
+};
+app.use(cors(corsOptions)); // Enable CORS for frontend communication
 
 // Apply rate limiting to all routes
 app.use(limiter);
@@ -159,11 +165,13 @@ app.use(express.json()); // Parse JSON request bodies
 // Import routes
 const stripeRouter = require('./routes/stripe');
 const printfulRouter = require('./routes/printful');
+const contactRouter = require('./routes/contact');
 
 // Mount routes with rate limiting
 // Stripe routes get stricter rate limiting for payment security
 app.use('/api/stripe', paymentLimiter, stripeRouter);
 app.use('/api/printful', printfulRouter);
+app.use('/api/contact', contactRouter);
 
 // Health check route
 app.get('/health', (_req, res) => {

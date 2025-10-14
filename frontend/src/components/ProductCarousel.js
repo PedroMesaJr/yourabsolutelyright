@@ -14,46 +14,43 @@ function ProductCarousel() {
     const container = containerRef.current;
     if (!container) return;
 
-    // Wait for next tick to ensure DOM is ready
-    const initTimeout = setTimeout(() => {
-      // Duplicate products for infinite scroll effect
-      const originalChildren = Array.from(container.children);
-      originalChildren.forEach(child => {
-        const clone = child.cloneNode(true);
-        container.appendChild(clone);
-      });
+    // Duplicate products for infinite scroll effect
+    const originalChildren = Array.from(container.children);
+    originalChildren.forEach(child => {
+      const clone = child.cloneNode(true);
+      container.appendChild(clone);
+    });
 
-      let scrollPosition = container.scrollLeft; // Start from current position
-      const baseSpeed = 0.5; // Base scroll speed (pixels per frame)
+    let scrollPosition = 0;
+    const baseSpeed = 1.5; // Scroll speed (pixels per frame)
 
-      const animate = () => {
-        if (!container) return;
+    const animate = () => {
+      if (!container) return;
 
-        // Always auto-scroll at constant speed when enabled
-        if (autoScrollEnabled.current) {
-          scrollPosition += baseSpeed;
+      // Auto-scroll when enabled
+      if (autoScrollEnabled.current) {
+        scrollPosition += baseSpeed;
 
-          // Handle infinite looping
-          const scrollWidth = container.scrollWidth / 2;
+        // Handle infinite looping - reset to start when halfway through
+        const scrollWidth = container.scrollWidth / 2;
 
-          if (scrollPosition >= scrollWidth) {
-            scrollPosition = 0;
-          }
-
-          container.scrollLeft = scrollPosition;
-        } else {
-          // Update scrollPosition to match manual scroll position
-          scrollPosition = container.scrollLeft;
+        if (scrollPosition >= scrollWidth) {
+          scrollPosition = 0;
         }
 
-        animationRef.current = requestAnimationFrame(animate);
-      };
+        container.scrollLeft = scrollPosition;
+      } else {
+        // Update scrollPosition to match manual scroll position when paused
+        scrollPosition = container.scrollLeft;
+      }
 
       animationRef.current = requestAnimationFrame(animate);
-    }, 100);
+    };
+
+    // Start animation
+    animationRef.current = requestAnimationFrame(animate);
 
     return () => {
-      clearTimeout(initTimeout);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }

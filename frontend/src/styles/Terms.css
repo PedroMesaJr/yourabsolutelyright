@@ -1,0 +1,273 @@
+/* Terms Page - Same aesthetic as landing page cards */
+
+.terms-page {
+  min-height: 100vh;
+  background-color: #D06D4F;
+  padding: 6rem 2rem 4rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.terms-container {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.terms-card {
+  background: linear-gradient(135deg, #3A3631 0%, #2E2A26 100%);
+  border: 2px solid #4A443F;
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Newspaper texture overlay */
+.terms-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.terms-content {
+  position: relative;
+  z-index: 1;
+}
+
+.terms-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #F4F3EE;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.terms-intro {
+  font-size: 1.125rem;
+  color: #C7BFB3;
+  line-height: 1.7;
+  margin: 0 0 2.5rem 0;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.terms-section {
+  margin-bottom: 2rem;
+}
+
+.terms-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #E67E5E;
+  margin: 0 0 1rem 0;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 8px rgba(230, 126, 94, 0.4);
+}
+
+.terms-text {
+  font-size: 1rem;
+  color: #C7BFB3;
+  line-height: 1.7;
+  margin: 0 0 1rem 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.terms-text:last-child {
+  margin-bottom: 0;
+}
+
+.terms-text strong {
+  color: #E67E5E;
+  font-weight: 700;
+}
+
+.terms-footer {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 2px solid rgba(230, 126, 94, 0.3);
+  text-align: center;
+}
+
+.terms-summary {
+  font-size: 1.125rem;
+  color: #C7BFB3;
+  line-height: 1.7;
+  margin: 0 0 1rem 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.terms-summary strong {
+  color: #E67E5E;
+  font-weight: 700;
+}
+
+.terms-tagline {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #E67E5E;
+  margin: 0;
+  text-shadow: 0 2px 8px rgba(230, 126, 94, 0.4);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .terms-page {
+    padding: 5rem 1.5rem 3rem 1.5rem;
+  }
+
+  .terms-card {
+    padding: 2rem;
+  }
+
+  .terms-title {
+    font-size: 2.25rem;
+  }
+
+  .terms-intro {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .terms-heading {
+    font-size: 1.25rem;
+  }
+
+  .terms-text {
+    font-size: 0.9375rem;
+  }
+
+  .terms-summary {
+    font-size: 1rem;
+  }
+
+  .terms-tagline {
+    font-size: 1.125rem;
+  }
+
+  .terms-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .terms-footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .terms-page {
+    padding: 4.5rem 1rem 2.5rem 1rem;
+  }
+
+  .terms-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .terms-title {
+    font-size: 1.875rem;
+  }
+
+  .terms-intro {
+    font-size: 0.9375rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .terms-heading {
+    font-size: 1.125rem;
+  }
+
+  .terms-text {
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .terms-summary {
+    font-size: 0.9375rem;
+  }
+
+  .terms-tagline {
+    font-size: 1rem;
+  }
+
+  .terms-section {
+    margin-bottom: 1.25rem;
+  }
+
+  .terms-footer {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .terms-card {
+    padding: 1.25rem;
+  }
+
+  .terms-title {
+    font-size: 1.625rem;
+  }
+
+  .terms-intro {
+    font-size: 0.875rem;
+  }
+
+  .terms-heading {
+    font-size: 1rem;
+  }
+
+  .terms-text {
+    font-size: 0.8125rem;
+  }
+
+  .terms-summary {
+    font-size: 0.875rem;
+  }
+
+  .terms-tagline {
+    font-size: 0.9375rem;
+  }
+}

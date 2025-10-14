@@ -29,6 +29,11 @@
   padding: 0.25rem 0;
 }
 
+.brand-link {
+  text-decoration: none;
+  display: inline-block;
+}
+
 .site-name {
   margin: 0;
   font-family: 'Righteous', 'Bangers', cursive, sans-serif;
