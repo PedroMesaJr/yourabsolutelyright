@@ -1,0 +1,131 @@
+/* Product Carousel Styles - Horizontal scroll carousel */
+
+.product-carousel {
+  width: 100%;
+  padding: 2rem 0;
+  position: relative;
+}
+
+/* Scroll hint styling */
+.scroll-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: #F4F3EE;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.scroll-hint .arrow {
+  font-size: 1.25rem;
+  animation: scrollPulse 2s ease-in-out infinite;
+  color: #E67E5E;
+}
+
+@keyframes scrollPulse {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateX(8px);
+    opacity: 1;
+  }
+}
+
+.carousel-container {
+  display: flex;
+  gap: 2rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding: 1rem 2rem;
+  margin: 0 auto;
+  max-width: 100%;
+
+  /* Subtle scrollbar styling */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(230, 126, 94, 0.3) rgba(60, 53, 50, 0.1);
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) scrollbar styling */
+.carousel-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.carousel-container::-webkit-scrollbar-track {
+  background: rgba(60, 53, 50, 0.1);
+  border-radius: 4px;
+}
+
+.carousel-container::-webkit-scrollbar-thumb {
+  background: rgba(230, 126, 94, 0.3);
+  border-radius: 4px;
+  transition: background 250ms ease;
+}
+
+.carousel-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(230, 126, 94, 0.5);
+}
+
+/* Smooth scroll snap for better UX */
+.carousel-container {
+  scroll-snap-type: x proximity;
+}
+
+.carousel-container > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* Add fade effect on edges */
+.product-carousel::before,
+.product-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3rem;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.product-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, #D06D4F, transparent);
+}
+
+.product-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, #D06D4F, transparent);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-container {
+    gap: 1.5rem;
+    padding: 1rem 1rem;
+  }
+
+  .product-carousel::before,
+  .product-carousel::after {
+    width: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    gap: 1rem;
+    padding: 1rem 0.75rem;
+  }
+
+  .product-carousel::before,
+  .product-carousel::after {
+    width: 1rem;
+  }
+}
