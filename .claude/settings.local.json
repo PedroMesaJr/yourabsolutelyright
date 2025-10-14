@@ -14,7 +14,8 @@
       "Bash(node server.js)",
       "Bash(node:*)",
       "Bash(git show:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git log:*)"
     ],
     "deny": [],
     "ask": []

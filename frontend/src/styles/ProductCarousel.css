@@ -6,6 +6,11 @@
   position: relative;
 }
 
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+
 /* Scroll hint styling */
 .scroll-hint {
   display: flex;
@@ -38,22 +43,147 @@
   }
 }
 
+/* Discount code hint styling */
+.hint-discount {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  text-shadow:
+    0 1px 4px rgba(230, 126, 94, 0.8),
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 0 12px rgba(255, 255, 255, 0.3);
+  filter: blur(3px);
+  cursor: pointer;
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  padding: 0.375rem 0.75rem;
+  border-radius: 6px;
+  background: linear-gradient(135deg, rgba(230, 126, 94, 0.15) 0%, rgba(208, 109, 79, 0.25) 100%);
+  border: 1px solid rgba(230, 126, 94, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.hint-discount:hover {
+  filter: blur(0px);
+  transform: scale(1.05);
+  background: linear-gradient(135deg, rgba(230, 126, 94, 0.25) 0%, rgba(208, 109, 79, 0.35) 100%);
+  border-color: rgba(230, 126, 94, 0.5);
+}
+
+.hint-discount:active {
+  transform: scale(0.98);
+}
+
+.hint-discount.copied {
+  filter: blur(0px);
+  color: #4ade80;
+  text-shadow:
+    0 1px 4px rgba(74, 222, 128, 0.8),
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 0 12px rgba(74, 222, 128, 0.6);
+  background: linear-gradient(135deg, rgba(74, 222, 128, 0.15) 0%, rgba(34, 197, 94, 0.25) 100%);
+  border-color: rgba(74, 222, 128, 0.5);
+  animation: copySuccess 200ms cubic-bezier(0.4, 0, 0.2, 1), successPulse 2s ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes copySuccess {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes successPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);
+  }
+}
+
 .carousel-container {
   display: flex;
   gap: 2rem;
-  overflow-x: hidden;
+  overflow-x: scroll;
   overflow-y: hidden;
   padding: 1rem 2rem;
   margin: 0 auto;
   max-width: 100%;
-  cursor: grab;
   user-select: none;
   -webkit-user-select: none;
   position: relative;
+  scroll-behavior: smooth;
 }
 
-.carousel-container:active {
-  cursor: grabbing;
+/* Hide scrollbar */
+.carousel-container::-webkit-scrollbar {
+  height: 0;
+  display: none;
+}
+
+.carousel-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Navigation Controls */
+.carousel-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(230, 126, 94, 0.9);
+  color: #FFFFFF;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 200ms ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+.carousel-control:hover {
+  background: rgba(230, 126, 94, 1);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(230, 126, 94, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.carousel-control:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-control-prev {
+  left: 2rem;
+}
+
+.carousel-control-next {
+  right: 2rem;
 }
 
 /* Product cards should not shrink */
@@ -94,6 +224,20 @@
   .product-carousel::after {
     width: 1.5rem;
   }
+
+  .carousel-control {
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+  }
+
+  .carousel-control-prev {
+    left: 1rem;
+  }
+
+  .carousel-control-next {
+    right: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -110,6 +254,20 @@
   .scroll-hint {
     font-size: 0.8125rem;
     margin-bottom: 1.25rem;
+  }
+
+  .carousel-control {
+    width: 36px;
+    height: 36px;
+    font-size: 1.75rem;
+  }
+
+  .carousel-control-prev {
+    left: 0.5rem;
+  }
+
+  .carousel-control-next {
+    right: 0.5rem;
   }
 }
 

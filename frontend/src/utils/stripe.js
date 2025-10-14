@@ -60,4 +60,5 @@ export const createCheckoutSession = async (product) => {
   }
 };
 
-export default { createCheckoutSession };
+const stripeUtils = { createCheckoutSession };
+export default stripeUtils;

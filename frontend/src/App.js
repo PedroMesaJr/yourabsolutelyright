@@ -13,7 +13,7 @@ function HomePage() {
     <>
       <Navigation />
       <Hero />
-      <div style={{ marginTop: '-26.4rem' }}>
+      <div style={{ marginTop: '-31.944rem' }}>
         <ProductCarousel />
       </div>
       <Footer />

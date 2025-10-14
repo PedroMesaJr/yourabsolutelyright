@@ -5,130 +5,134 @@ import '../styles/ProductCarousel.css';
 
 function ProductCarousel() {
   const containerRef = useRef(null);
-  const [isMouseOver, setIsMouseOver] = useState(false);
+  const [showControls, setShowControls] = useState(false);
+  const [copied, setCopied] = useState(false);
   const animationRef = useRef(null);
-  const lastMouseMoveTime = useRef(Date.now());
-  const mouseSpeedRef = useRef(0);
-  const mouseDirectionRef = useRef(1); // 1 for right, -1 for left
-  const targetSpeedRef = useRef(0);
-  const currentSpeedRef = useRef(0.5);
+  const autoScrollEnabled = useRef(true);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    // Duplicate products for infinite scroll effect
-    const originalChildren = Array.from(container.children);
-    originalChildren.forEach(child => {
-      const clone = child.cloneNode(true);
-      container.appendChild(clone);
-    });
+    // Wait for next tick to ensure DOM is ready
+    const initTimeout = setTimeout(() => {
+      // Duplicate products for infinite scroll effect
+      const originalChildren = Array.from(container.children);
+      originalChildren.forEach(child => {
+        const clone = child.cloneNode(true);
+        container.appendChild(clone);
+      });
 
-    let scrollPosition = 0;
-    const baseSpeed = 0.5; // Base scroll speed (pixels per frame)
+      let scrollPosition = container.scrollLeft; // Start from current position
+      const baseSpeed = 0.5; // Base scroll speed (pixels per frame)
 
-    const animate = () => {
-      if (!container) return;
+      const animate = () => {
+        if (!container) return;
 
-      // Calculate target speed based on mouse interaction
-      let targetSpeed = baseSpeed;
-      let direction = 1; // Default right direction
+        // Always auto-scroll at constant speed when enabled
+        if (autoScrollEnabled.current) {
+          scrollPosition += baseSpeed;
 
-      if (isMouseOver) {
-        const timeSinceLastMove = Date.now() - lastMouseMoveTime.current;
+          // Handle infinite looping
+          const scrollWidth = container.scrollWidth / 2;
 
-        if (timeSinceLastMove < 150) {
-          // Just moved - follow mouse speed and direction gently
-          targetSpeed = mouseSpeedRef.current * 0.6;
-          direction = mouseDirectionRef.current;
-        } else if (timeSinceLastMove < 800) {
-          // Recently moved - very slow, almost stopped
-          targetSpeed = baseSpeed * 0.08;
-          direction = 1; // Return to default direction
+          if (scrollPosition >= scrollWidth) {
+            scrollPosition = 0;
+          }
+
+          container.scrollLeft = scrollPosition;
         } else {
-          // Hovering but not moving - nearly stopped for easy clicking
-          targetSpeed = baseSpeed * 0.12;
-          direction = 1;
+          // Update scrollPosition to match manual scroll position
+          scrollPosition = container.scrollLeft;
         }
-      } else {
-        // Not hovering - normal speed
-        targetSpeed = baseSpeed;
-        direction = 1;
-      }
 
-      targetSpeedRef.current = targetSpeed * direction;
+        animationRef.current = requestAnimationFrame(animate);
+      };
 
-      // Smooth interpolation for buttery smooth transitions
-      const smoothingFactor = 0.08; // Lower = smoother but slower response
-      currentSpeedRef.current += (targetSpeedRef.current - currentSpeedRef.current) * smoothingFactor;
-
-      scrollPosition += currentSpeedRef.current;
-
-      // Handle bidirectional looping
-      const scrollWidth = container.scrollWidth / 2;
-
-      if (scrollPosition >= scrollWidth) {
-        scrollPosition = 0;
-      } else if (scrollPosition < 0) {
-        scrollPosition = scrollWidth - 1;
-      }
-
-      container.scrollLeft = scrollPosition;
       animationRef.current = requestAnimationFrame(animate);
-    };
-
-    animationRef.current = requestAnimationFrame(animate);
+    }, 100);
 
     return () => {
+      clearTimeout(initTimeout);
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isMouseOver]);
-
-  const handleMouseMove = (e) => {
-    const currentTime = Date.now();
-    const timeDiff = currentTime - lastMouseMoveTime.current;
-
-    if (timeDiff > 0 && e.movementX !== 0) {
-      // Calculate mouse speed and direction with much gentler response
-      const speed = Math.abs(e.movementX) / Math.max(timeDiff, 1) * 8;
-      mouseSpeedRef.current = Math.min(speed, 1.5); // Much lower cap for smoother control
-
-      // Set direction based on mouse movement
-      mouseDirectionRef.current = e.movementX > 0 ? 1 : -1;
-    }
-
-    lastMouseMoveTime.current = currentTime;
-  };
+  }, []);
 
   const handleMouseEnter = () => {
-    setIsMouseOver(true);
-    lastMouseMoveTime.current = Date.now();
+    setShowControls(true);
+    autoScrollEnabled.current = false; // Pause auto-scroll
   };
 
   const handleMouseLeave = () => {
-    setIsMouseOver(false);
-    mouseSpeedRef.current = 0;
-    mouseDirectionRef.current = 1;
+    setShowControls(false);
+    autoScrollEnabled.current = true; // Resume auto-scroll
+  };
+
+  const scrollNext = () => {
+    if (containerRef.current) {
+      const cardWidth = 632; // Product card width (600px) + gap (32px)
+      containerRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
+    }
+  };
+
+  const scrollPrev = () => {
+    if (containerRef.current) {
+      const cardWidth = 632; // Product card width (600px) + gap (32px)
+      containerRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+    }
+  };
+
+  const handleCopyCode = async () => {
+    try {
+      await navigator.clipboard.writeText('CLAUDE20');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000); // Reset after 2 seconds
+    } catch (err) {
+      console.error('Failed to copy code:', err);
+    }
   };
 
   return (
     <section className="product-carousel">
       <div className="scroll-hint">
-        <span>Continuously Scrolling</span>
-        <span className="arrow">∞</span>
+        <span
+          className={`hint-discount ${copied ? 'copied' : ''}`}
+          onClick={handleCopyCode}
+          title="Click to copy code"
+        >
+          {copied ? '✓ Copied!' : 'Use Code CLAUDE20 for 20% Off'}
+        </span>
       </div>
       <div
-        className="carousel-container"
-        ref={containerRef}
+        className="carousel-wrapper"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onMouseMove={handleMouseMove}
       >
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        {showControls && (
+          <>
+            <button
+              className="carousel-control carousel-control-prev"
+              onClick={scrollPrev}
+              aria-label="Previous product"
+            >
+              ‹
+            </button>
+            <button
+              className="carousel-control carousel-control-next"
+              onClick={scrollNext}
+              aria-label="Next product"
+            >
+              ›
+            </button>
+          </>
+        )}
+        <div className="carousel-container" ref={containerRef}>
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
       </div>
     </section>
   );

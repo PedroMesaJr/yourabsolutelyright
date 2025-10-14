@@ -4,22 +4,47 @@
 export const products = [
   {
     id: 1,
-    name: "Classic Mug",
-    description: "Start your morning absolutely right with this ceramic mug featuring Claude's signature phrase.",
-    price: 19.99,
-    image: "/images/products/mug-classic.png",
+    name: "Premium Mousepad",
+    description: "You're absolutely right to upgrade your desk setup. Smooth surface, non-slip base, perfect for work or gaming.",
+    price: 49.99,
+    image: "/images/products/mousepad.png",
     printfulId: "placeholder", // Will add actual Printful product ID later
   },
   {
     id: 2,
-    name: "Comfort Tee",
-    description: "Soft cotton t-shirt that reminds everyone you're absolutely right. Because you are.",
-    price: 24.99,
-    image: "/images/products/tee-black.png",
-    printfulId: "placeholder",
+    name: "Premium Flip-Flops",
+    description: "Walk confidently knowing you're absolutely right. Comfortable sublimation flip-flops for beach, pool, or casual wear.",
+    price: 54.99,
+    image: "/images/products/flip-flops/1-front.png",
+    images: [
+      "/images/products/flip-flops/1-front.png",
+      "/images/products/flip-flops/2-back.png",
+      "/images/products/flip-flops/3-front-left.png",
+      "/images/products/flip-flops/4-front-right.png",
+      "/images/products/flip-flops/5-left.png",
+      "/images/products/flip-flops/6-right.png",
+      "/images/products/flip-flops/7-top.png",
+      "/images/products/flip-flops/8-lifestyle.png",
+      "/images/products/flip-flops/9-lifestyle-2.png",
+    ],
+    // Printful Sublimation Flip-Flops - Multiple variants (sizes)
+    printfulVariants: [
+      { size: "S", variantId: "68edc70ad35415", retailPrice: 18.38 },
+      { size: "M", variantId: "68edc70ad35473", retailPrice: 18.38 },
+      { size: "L", variantId: "68edc70ad354c8", retailPrice: 18.38 },
+    ],
+    printfulId: "68edc70ad35415", // Default to S size
   },
   {
     id: 3,
+    name: "Minimalist Backpack",
+    description: "Carry everything you need with absolute confidence. All-over print minimalist backpack for the modern explorer.",
+    price: 109.99,
+    image: "/images/products/backpack.png",
+    printfulId: "68edc709c3b424", // All-Over Print Minimalist Backpack
+  },
+  {
+    id: 4,
     name: "Cozy Hoodie",
     description: "Premium hoodie for those absolutely right moments. Warm, comfortable, and undeniably correct.",
     price: 44.99,
@@ -27,7 +52,7 @@ export const products = [
     printfulId: "placeholder",
   },
   {
-    id: 4,
+    id: 5,
     name: "Travel Mug",
     description: "Take your absolutely right attitude on the go with this insulated stainless steel travel mug.",
     price: 27.99,
@@ -35,7 +60,7 @@ export const products = [
     printfulId: "placeholder",
   },
   {
-    id: 5,
+    id: 6,
     name: "Premium Tee",
     description: "Upgrade your wardrobe with this premium blend tee. Soft, stylish, and absolutely right.",
     price: 29.99,
@@ -43,7 +68,7 @@ export const products = [
     printfulId: "placeholder",
   },
   {
-    id: 6,
+    id: 7,
     name: "Canvas Tote",
     description: "Carry your essentials and your confidence with this durable canvas tote bag.",
     price: 22.99,
@@ -51,7 +76,7 @@ export const products = [
     printfulId: "placeholder",
   },
   {
-    id: 7,
+    id: 8,
     name: "Zip Hoodie",
     description: "Full-zip hoodie for maximum comfort and absolutely right vibes. Perfect for any occasion.",
     price: 49.99,
