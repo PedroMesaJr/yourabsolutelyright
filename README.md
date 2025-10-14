@@ -7,9 +7,9 @@
 
   <p>
     <a href="https://yourabsolutelyright.com">🛍️ Visit Store</a> •
-    <a href="#why-this-exists">Why Though?</a> •
-    <a href="#tech-stack">Tech Stack</a> •
-    <a href="#for-developers">For Developers</a>
+    <a href="#-why-this-exists">Why Though?</a> •
+    <a href="#%EF%B8%8F-tech-stack">Tech Stack</a> •
+    <a href="#-for-developers">For Developers</a>
   </p>
 
   <p>
@@ -294,7 +294,7 @@ If Anthropic asks us to take it down, we probably will. Until then, we're vibing
   <p>
     <a href="https://yourabsolutelyright.com">Visit Store</a> •
     <a href="https://github.com/PedroMesaJr/yourabsolutelyright/issues">Report Issue</a> •
-    <a href="#tech-stack">Tech Docs</a>
+    <a href="#%EF%B8%8F-tech-stack">Tech Docs</a>
   </p>
 
   <br/>
