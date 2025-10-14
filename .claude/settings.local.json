@@ -12,7 +12,9 @@
       "Bash(pkill:*)",
       "Bash(timeout:*)",
       "Bash(node server.js)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(git show:*)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []
