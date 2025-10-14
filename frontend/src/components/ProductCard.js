@@ -113,6 +113,11 @@ function ProductCard({ product }) {
     }
   };
 
+  // Handle touch events for mobile navigation
+  const handleTouchStart = (e) => {
+    e.stopPropagation();
+  };
+
   // ZERO-LATENCY: Prefetch checkout session on hover for instant redirect
   const handleBuyNowHover = async () => {
     // Only prefetch for simple products (no variants) to avoid waste
@@ -244,6 +249,7 @@ function ProductCard({ product }) {
                 className="gallery-nav gallery-prev"
                 onClick={(e) => { e.stopPropagation(); prevImage(); }}
                 onMouseDown={preventCarouselScroll}
+                onTouchStart={handleTouchStart}
                 disabled={isTransitioning}
               >
                 ‹
@@ -252,16 +258,18 @@ function ProductCard({ product }) {
                 className="gallery-nav gallery-next"
                 onClick={(e) => { e.stopPropagation(); nextImage(); }}
                 onMouseDown={preventCarouselScroll}
+                onTouchStart={handleTouchStart}
                 disabled={isTransitioning}
               >
                 ›
               </button>
-              <div className="gallery-dots" onMouseDown={preventCarouselScroll}>
+              <div className="gallery-dots" onMouseDown={preventCarouselScroll} onTouchStart={handleTouchStart}>
                 {product.images.map((_, index) => (
                   <span
                     key={index}
                     className={`gallery-dot ${index === currentImageIndex ? 'active' : ''} ${isTransitioning ? 'disabled' : ''}`}
                     onClick={(e) => { e.stopPropagation(); goToImage(index); }}
+                    onTouchStart={handleTouchStart}
                   />
                 ))}
               </div>
