@@ -1,4 +1,4 @@
-/* Success Page Styles */
+/* Success Page Styles - Matching Product Card Aesthetic */
 .success-page {
   min-height: 100vh;
   display: flex;
@@ -10,26 +10,65 @@
 .success-container {
   max-width: 600px;
   width: 100%;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 12px;
-  padding: 3rem 2rem;
+  background: linear-gradient(135deg, #3A3631 0%, #2E2A26 100%);
+  border: 2px solid #4A443F;
+  border-radius: 20px;
+  padding: 3rem 2.5rem;
   text-align: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+}
+
+/* Newspaper texture overlay */
+.success-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+  pointer-events: none;
+  opacity: 0.3;
+  border-radius: 20px;
 }
 
 .success-icon {
-  width: 80px;
-  height: 80px;
-  background: #28a745;
-  color: white;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #E67E5E 0%, #D06D4F 100%);
+  color: #FFFFFF;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 1.25rem;
   animation: successPop 0.5s ease-out;
+  box-shadow:
+    0 4px 12px rgba(230, 126, 94, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 1;
 }
 
 @keyframes successPop {
@@ -48,115 +87,222 @@
 
 .success-title {
   font-size: 2rem;
-  color: #2C1810;
+  font-weight: 700;
+  color: #F4F3EE;
   margin-bottom: 0.5rem;
-  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
 }
 
 .success-subtitle {
-  font-size: 1.25rem;
-  color: #5C4033;
+  font-size: 1.125rem;
+  color: #C7BFB3;
   margin-bottom: 1.5rem;
   font-weight: 400;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
 }
 
 .success-message {
-  font-size: 1rem;
-  color: #6B5B4F;
+  font-size: 0.9375rem;
+  color: #C7BFB3;
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
 }
 
 .order-details {
-  background: #F5F5F0;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #2A2622 0%, #1F1C19 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
   padding: 1.5rem;
-  margin: 2rem 0;
+  margin: 1.5rem 0;
   text-align: left;
+  position: relative;
+  z-index: 1;
 }
 
 .customer-email {
-  font-size: 1rem;
-  color: #5C4033;
-  margin-bottom: 0.75rem;
+  font-size: 0.9375rem;
+  color: #C7BFB3;
+  margin-bottom: 0.875rem;
+  line-height: 1.5;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .customer-email strong {
-  color: #2C1810;
+  color: #E67E5E;
+  font-weight: 600;
 }
 
 .order-id {
-  font-size: 0.875rem;
-  color: #6B5B4F;
+  font-size: 0.8125rem;
+  color: #A89E91;
   font-family: 'Courier New', monospace;
-  margin-top: 0.75rem;
+  margin-top: 0.875rem;
+  line-height: 1.5;
 }
 
 .order-id span {
-  background: #fff;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.375rem 0.625rem;
+  border-radius: 6px;
   display: inline-block;
-  margin-top: 0.25rem;
+  margin-top: 0.375rem;
+  color: #C7BFB3;
+  word-break: break-all;
 }
 
 .success-actions {
-  margin: 2rem 0;
+  margin: 1.75rem 0 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .btn-continue {
   display: inline-block;
-  background: #2C1810;
-  color: #F5E6D3;
-  padding: 1rem 2.5rem;
-  border-radius: 6px;
+  background: linear-gradient(135deg, #E67E5E 0%, #D06D4F 100%);
+  color: #FFFFFF;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 0.875rem 2rem;
   text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  box-shadow:
+    0 4px 12px rgba(230, 126, 94, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-continue::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 600ms ease;
+}
+
+.btn-continue:hover::before {
+  left: 100%;
 }
 
 .btn-continue:hover {
-  background: #1A0F0A;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(44, 24, 16, 0.3);
+  background: linear-gradient(135deg, #F08F6F 0%, #E67E5E 100%);
+  transform: translateY(-3px);
+  box-shadow:
+    0 8px 20px rgba(230, 126, 94, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-continue:active {
+  transform: translateY(-1px);
+  box-shadow:
+    0 4px 12px rgba(230, 126, 94, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .success-note {
-  border-top: 1px solid #E5D5C5;
-  padding-top: 1.5rem;
-  margin-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.25rem;
+  margin-top: 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .success-note p {
-  font-size: 0.875rem;
-  color: #8B7968;
-  margin: 0.5rem 0;
+  font-size: 0.8125rem;
+  color: #A89E91;
+  margin: 0.375rem 0;
   line-height: 1.5;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Mobile responsive */
 @media (max-width: 768px) {
+  .success-page {
+    padding: 1.5rem 1rem;
+  }
+
   .success-container {
     padding: 2rem 1.5rem;
+    border-radius: 16px;
   }
 
   .success-title {
     font-size: 1.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .success-subtitle {
-    font-size: 1.1rem;
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
   }
 
   .success-icon {
     width: 60px;
     height: 60px;
     font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .success-message {
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .order-details {
+    padding: 1.25rem;
+    margin: 1.25rem 0;
+    border-radius: 10px;
+  }
+
+  .customer-email {
+    font-size: 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .order-id {
+    font-size: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .order-id span {
+    padding: 0.3rem 0.5rem;
+    font-size: 0.7rem;
+  }
+
+  .success-actions {
+    margin: 1.5rem 0 1.25rem;
   }
 
   .btn-continue {
     padding: 0.875rem 2rem;
-    font-size: 1rem;
+    font-size: 0.9375rem;
+    border-radius: 12px;
+    width: 100%;
+  }
+
+  .success-note {
+    padding-top: 1rem;
+    margin-top: 1.25rem;
+  }
+
+  .success-note p {
+    font-size: 0.75rem;
   }
 }
