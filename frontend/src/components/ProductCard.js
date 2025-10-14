@@ -121,22 +121,29 @@ function ProductCard({ product }) {
         onMouseEnter={preventCarouselScroll}
         onMouseLeave={preventCarouselScroll}
       >
-        <img
-          ref={imageRef}
-          src={displayImage}
-          alt={product.name}
-          className={`product-image ${imageLoaded ? 'loaded' : 'loading'} ${isTransitioning ? 'transitioning' : ''}`}
-          onClick={(e) => { e.stopPropagation(); setShowZoom(true); }}
-          onError={(e) => {
-            console.error('[ProductCard] Image failed to load:', displayImage);
-            e.target.style.display = 'none';
-          }}
-          onLoad={() => {
-            console.log('[ProductCard] Image loaded:', displayImage);
-            setImageLoaded(true);
-          }}
-          draggable={false}
-        />
+        <picture>
+          <source
+            srcSet={displayImage.replace(/\.(png|jpg|jpeg)$/i, '.webp')}
+            type="image/webp"
+          />
+          <img
+            ref={imageRef}
+            src={displayImage}
+            alt={product.name}
+            className={`product-image ${imageLoaded ? 'loaded' : 'loading'} ${isTransitioning ? 'transitioning' : ''}`}
+            onClick={(e) => { e.stopPropagation(); setShowZoom(true); }}
+            onError={(e) => {
+              console.error('[ProductCard] Image failed to load:', displayImage);
+              e.target.style.display = 'none';
+            }}
+            onLoad={() => {
+              console.log('[ProductCard] Image loaded:', displayImage);
+              setImageLoaded(true);
+            }}
+            loading="lazy"
+            draggable={false}
+          />
+        </picture>
         {hasGallery && (
           <>
             <button
@@ -175,12 +182,18 @@ function ProductCard({ product }) {
         <div className="zoom-modal" onClick={() => setShowZoom(false)}>
           <div className="zoom-modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="zoom-close" onClick={() => setShowZoom(false)}>×</button>
-            <img
-              src={displayImage}
-              alt={product.name}
-              className={`zoom-image ${imageLoaded ? 'loaded' : 'loading'}`}
-              draggable={false}
-            />
+            <picture>
+              <source
+                srcSet={displayImage.replace(/\.(png|jpg|jpeg)$/i, '.webp')}
+                type="image/webp"
+              />
+              <img
+                src={displayImage}
+                alt={product.name}
+                className={`zoom-image ${imageLoaded ? 'loaded' : 'loading'}`}
+                draggable={false}
+              />
+            </picture>
             {hasGallery && (
               <>
                 <button

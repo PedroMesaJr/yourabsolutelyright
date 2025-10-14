@@ -40,7 +40,16 @@ export const products = [
     name: "Minimalist Backpack",
     description: "Carry everything you need with absolute confidence. All-over print minimalist backpack for the modern explorer.",
     price: 109.99,
-    image: "/images/products/backpack.png",
+    image: "/images/products/backpack/1-front.png",
+    images: [
+      "/images/products/backpack/1-front.png",
+      "/images/products/backpack/2-back.png",
+      "/images/products/backpack/3-left.png",
+      "/images/products/backpack/4-right.png",
+      "/images/products/backpack/5-left-front.png",
+      "/images/products/backpack/6-bottom.png",
+      "/images/products/backpack/7-detail.png",
+    ],
     printfulId: "68edc709c3b424", // All-Over Print Minimalist Backpack
   },
   {
