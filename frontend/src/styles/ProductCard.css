@@ -985,6 +985,12 @@
   letter-spacing: -0.01em;
 }
 
+/* Color selector arrow */
+.color-option .size-price {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
 /* Responsive - Size Modal */
 @media (max-width: 768px) {
   .size-modal {

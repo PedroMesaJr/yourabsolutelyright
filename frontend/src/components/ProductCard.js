@@ -11,7 +11,9 @@ function ProductCard({ product }) {
   const [showZoom, setShowZoom] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [showColorSelector, setShowColorSelector] = useState(false);
   const [showSizeSelector, setShowSizeSelector] = useState(false);
+  const [selectedColor, setSelectedColor] = useState(null);
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [showCouponModal, setShowCouponModal] = useState(false);
   const [couponCode, setCouponCode] = useState('');
@@ -20,6 +22,14 @@ function ProductCard({ product }) {
 
   // Check if product has size variants
   const hasVariants = product.printfulVariants && product.printfulVariants.length > 1;
+
+  // Check if product has color variants
+  const hasColorVariants = product.printfulVariants && product.printfulVariants.some(v => v.color);
+
+  // Get unique colors from variants
+  const availableColors = hasColorVariants
+    ? [...new Set(product.printfulVariants.map(v => v.color).filter(Boolean))]
+    : [];
 
   // Check if product has multiple images (gallery)
   const hasGallery = product.images && product.images.length > 1;
@@ -100,7 +110,13 @@ function ProductCard({ product }) {
   };
 
   const handleBuyNow = async () => {
-    // If product has variants, show size selector first
+    // If product has color variants, show color selector first
+    if (hasColorVariants) {
+      setShowColorSelector(true);
+      return;
+    }
+
+    // If product has size variants (but no colors), show size selector
     if (hasVariants) {
       setShowSizeSelector(true);
       return;
@@ -108,6 +124,12 @@ function ProductCard({ product }) {
 
     // Otherwise, show coupon modal
     setShowCouponModal(true);
+  };
+
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+    setShowColorSelector(false);
+    setShowSizeSelector(true);
   };
 
   const proceedToCheckout = async (variant = null, coupon = '') => {
@@ -146,6 +168,11 @@ function ProductCard({ product }) {
     setShowSizeSelector(false);
     setShowCouponModal(true);
   };
+
+  // Get filtered variants based on selected color
+  const filteredVariants = selectedColor
+    ? product.printfulVariants.filter(v => v.color === selectedColor)
+    : product.printfulVariants;
 
   const handleCouponSkip = () => {
     setShowCouponModal(false);
@@ -215,23 +242,44 @@ function ProductCard({ product }) {
           </div>
         </div>
 
+        {showColorSelector && (
+        <div className="size-modal" onClick={() => setShowColorSelector(false)}>
+          <div className="size-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="size-modal-close" onClick={() => setShowColorSelector(false)}>×</button>
+            <h3 className="size-modal-title">Select Color</h3>
+            <p className="size-modal-product">{product.name}</p>
+            <div className="size-options">
+              {availableColors.map((color) => (
+                <button
+                  key={color}
+                  className="size-option color-option"
+                  onClick={() => handleColorSelect(color)}
+                  disabled={loading}
+                >
+                  <span className="size-name">{color}</span>
+                  <span className="size-price">›</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+        )}
+
         {showSizeSelector && (
         <div className="size-modal" onClick={() => setShowSizeSelector(false)}>
           <div className="size-modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="size-modal-close" onClick={() => setShowSizeSelector(false)}>×</button>
             <h3 className="size-modal-title">Select Size</h3>
-            <p className="size-modal-product">{product.name}</p>
+            <p className="size-modal-product">{product.name}{selectedColor ? ` - ${selectedColor}` : ''}</p>
             <div className="size-options">
-              {product.printfulVariants.map((variant) => (
+              {filteredVariants.map((variant) => (
                 <button
                   key={variant.variantId}
                   className="size-option"
                   onClick={() => handleVariantSelect(variant)}
                   disabled={loading}
                 >
-                  <span className="size-name">
-                    {variant.color ? `${variant.color} - ${variant.size}` : variant.size}
-                  </span>
+                  <span className="size-name">{variant.size}</span>
                   <span className="size-price">${variant.retailPrice}</span>
                 </button>
               ))}
