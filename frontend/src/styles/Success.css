@@ -1,0 +1,162 @@
+/* Success Page Styles */
+.success-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.success-container {
+  max-width: 600px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: #28a745;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0 auto 1.5rem;
+  animation: successPop 0.5s ease-out;
+}
+
+@keyframes successPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.success-title {
+  font-size: 2rem;
+  color: #2C1810;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.success-subtitle {
+  font-size: 1.25rem;
+  color: #5C4033;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+}
+
+.success-message {
+  font-size: 1rem;
+  color: #6B5B4F;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.order-details {
+  background: #F5F5F0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  text-align: left;
+}
+
+.customer-email {
+  font-size: 1rem;
+  color: #5C4033;
+  margin-bottom: 0.75rem;
+}
+
+.customer-email strong {
+  color: #2C1810;
+}
+
+.order-id {
+  font-size: 0.875rem;
+  color: #6B5B4F;
+  font-family: 'Courier New', monospace;
+  margin-top: 0.75rem;
+}
+
+.order-id span {
+  background: #fff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 0.25rem;
+}
+
+.success-actions {
+  margin: 2rem 0;
+}
+
+.btn-continue {
+  display: inline-block;
+  background: #2C1810;
+  color: #F5E6D3;
+  padding: 1rem 2.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.btn-continue:hover {
+  background: #1A0F0A;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(44, 24, 16, 0.3);
+}
+
+.success-note {
+  border-top: 1px solid #E5D5C5;
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+}
+
+.success-note p {
+  font-size: 0.875rem;
+  color: #8B7968;
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .success-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .success-title {
+    font-size: 1.5rem;
+  }
+
+  .success-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .success-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 2rem;
+  }
+
+  .btn-continue {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+  }
+}
