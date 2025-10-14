@@ -8,7 +8,7 @@ export const products = [
     description: "You're absolutely right to upgrade your desk setup. Smooth surface, non-slip base, perfect for work or gaming.",
     price: 49.99,
     image: "/images/products/mousepad.png",
-    printfulId: "placeholder", // Will add actual Printful product ID later
+    printfulId: "68edc70784ea14", // Mouse pad from Printful
   },
   {
     id: 2,
@@ -58,7 +58,7 @@ export const products = [
     description: "Premium hoodie for those absolutely right moments. Warm, comfortable, and undeniably correct.",
     price: 44.99,
     image: "/images/products/hoodie-gray.png",
-    printfulId: "placeholder",
+    printfulId: "68edc845abc373", // Unisex Hoodie from Printful (24 variants)
   },
   {
     id: 5,
@@ -66,7 +66,7 @@ export const products = [
     description: "Take your absolutely right attitude on the go with this insulated stainless steel travel mug.",
     price: 27.99,
     image: "/images/products/mug-classic.png",
-    printfulId: "placeholder",
+    printfulId: "68edc70a1d5ba2", // White glossy mug from Printful (3 variants)
   },
   {
     id: 6,
@@ -90,7 +90,23 @@ export const products = [
     description: "Full-zip hoodie for maximum comfort and absolutely right vibes. Perfect for any occasion.",
     price: 49.99,
     image: "/images/products/hoodie-gray.png",
-    printfulId: "placeholder",
+    printfulId: "68edc70e7c5cf5", // Oversized heavyweight hoodie from Printful (12 variants)
+  },
+  {
+    id: 9,
+    name: "Crop Hoodie",
+    description: "Trendy crop hoodie for those absolutely right fashion moments. Comfort meets style.",
+    price: 42.99,
+    image: "/images/products/hoodie-gray.png",
+    printfulId: "68edc70a5b9fe5", // Crop Hoodie from Printful (5 variants)
+  },
+  {
+    id: 10,
+    name: "Visor",
+    description: "Stay cool and absolutely right with this stylish visor. Perfect for sunny days.",
+    price: 24.99,
+    image: "/images/products/mug-classic.png", // Placeholder - add visor image
+    printfulId: "68edc7090fb5a1", // Visor from Printful (1 variant)
   },
 ];
 
