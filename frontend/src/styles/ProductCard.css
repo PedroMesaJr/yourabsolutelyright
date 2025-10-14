@@ -840,11 +840,34 @@
   padding: 1.25rem;
   width: 100%;
   max-width: 100%;
+  max-height: calc(100% - 2rem);
+  overflow-y: auto;
   box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.4),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   position: relative;
   animation: sizeSlideUp 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  scrollbar-width: thin;
+  scrollbar-color: #E67E5E #2A2622;
+}
+
+.size-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.size-modal-content::-webkit-scrollbar-track {
+  background: #2A2622;
+  border-radius: 10px;
+}
+
+.size-modal-content::-webkit-scrollbar-thumb {
+  background: #E67E5E;
+  border-radius: 10px;
+  border: 2px solid #2A2622;
+}
+
+.size-modal-content::-webkit-scrollbar-thumb:hover {
+  background: #F08F6F;
 }
 
 @keyframes sizeSlideUp {

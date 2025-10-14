@@ -54,14 +54,6 @@ export const products = [
     printfulId: "68edc709c3b424", // All-Over Print Minimalist Backpack
   },
   {
-    id: 4,
-    name: "Cozy Hoodie",
-    description: "Premium hoodie for those absolutely right moments. Warm, comfortable, and undeniably correct.",
-    price: 44.99,
-    image: "/images/products/hoodie-gray.png",
-    printfulId: "68edc845abc373", // Unisex Hoodie from Printful (24 variants)
-  },
-  {
     id: 5,
     name: "White Glossy Mug",
     description: "Take your absolutely right attitude on the go. Premium white glossy ceramic mug - perfect for coffee, tea, or any beverage.",
@@ -102,18 +94,18 @@ export const products = [
     ],
     // Printful Bella + Canvas 4719 Oversized Heavyweight Hoodie - 12 variants (2 colors × 6 sizes)
     printfulVariants: [
-      { size: "S", variantId: "68edc70e7c5d89", retailPrice: 116.67 },   // Black S
-      { size: "M", variantId: "68edc70e7c5df8", retailPrice: 116.67 },   // Black M
-      { size: "L", variantId: "68edc70e7c5e47", retailPrice: 116.67 },   // Black L
-      { size: "XL", variantId: "68edc70e7c5e96", retailPrice: 116.67 },  // Black XL
-      { size: "2XL", variantId: "68edc70e7c5ee1", retailPrice: 122.73 }, // Black 2XL
-      { size: "3XL", variantId: "68edc70e7c5f27", retailPrice: 128.79 }, // Black 3XL
-      { size: "S", variantId: "68edc70e7c5f79", retailPrice: 116.67 },   // White S
-      { size: "M", variantId: "68edc70e7c5fc3", retailPrice: 116.67 },   // White M
-      { size: "L", variantId: "68edc70e7c6012", retailPrice: 116.67 },   // White L
-      { size: "XL", variantId: "68edc70e7c6054", retailPrice: 116.67 },  // White XL
-      { size: "2XL", variantId: "68edc70e7c60a6", retailPrice: 122.73 }, // White 2XL
-      { size: "3XL", variantId: "68edc70e7c60f3", retailPrice: 128.79 }, // White 3XL
+      { size: "S", color: "Black", variantId: "68edc70e7c5d89", retailPrice: 116.67 },
+      { size: "M", color: "Black", variantId: "68edc70e7c5df8", retailPrice: 116.67 },
+      { size: "L", color: "Black", variantId: "68edc70e7c5e47", retailPrice: 116.67 },
+      { size: "XL", color: "Black", variantId: "68edc70e7c5e96", retailPrice: 116.67 },
+      { size: "2XL", color: "Black", variantId: "68edc70e7c5ee1", retailPrice: 122.73 },
+      { size: "3XL", color: "Black", variantId: "68edc70e7c5f27", retailPrice: 128.79 },
+      { size: "S", color: "White", variantId: "68edc70e7c5f79", retailPrice: 116.67 },
+      { size: "M", color: "White", variantId: "68edc70e7c5fc3", retailPrice: 116.67 },
+      { size: "L", color: "White", variantId: "68edc70e7c6012", retailPrice: 116.67 },
+      { size: "XL", color: "White", variantId: "68edc70e7c6054", retailPrice: 116.67 },
+      { size: "2XL", color: "White", variantId: "68edc70e7c60a6", retailPrice: 122.73 },
+      { size: "3XL", color: "White", variantId: "68edc70e7c60f3", retailPrice: 128.79 },
     ],
     printfulId: "68edc70e7c5d89", // Default to Black S
   },

@@ -229,7 +229,9 @@ function ProductCard({ product }) {
                   onClick={() => handleVariantSelect(variant)}
                   disabled={loading}
                 >
-                  <span className="size-name">{variant.size}</span>
+                  <span className="size-name">
+                    {variant.color ? `${variant.color} - ${variant.size}` : variant.size}
+                  </span>
                   <span className="size-price">${variant.retailPrice}</span>
                 </button>
               ))}
