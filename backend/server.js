@@ -4,6 +4,7 @@
 // Import required packages
 const express = require('express');
 const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 // Create Express app instance
@@ -12,11 +13,55 @@ const app = express();
 // Set port
 const PORT = process.env.PORT || 5000;
 
+// Rate limiting configuration
+// Prevents abuse by limiting requests per IP address
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: {
+    error: 'Too many requests',
+    details: 'Please try again later'
+  },
+  standardHeaders: true, // Return rate limit info in `RateLimit-*` headers
+  legacyHeaders: false, // Disable `X-RateLimit-*` headers
+  // Skip rate limiting for health check
+  skip: (req) => req.path === '/health',
+});
+
+// Stricter rate limiting for payment endpoints
+const paymentLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // Limit payment requests to 10 per 15 minutes
+  message: {
+    error: 'Too many payment requests',
+    details: 'Please wait before trying again'
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 // Middleware setup
 app.use(cors()); // Enable CORS for frontend communication
 
+// Apply rate limiting to all routes
+app.use(limiter);
+
 // Webhook route MUST come before express.json() middleware
 // Stripe requires raw body for signature verification
+//
+// This endpoint handles Stripe webhook events, particularly:
+// - checkout.session.completed: Triggered when payment is successful
+//
+// Security:
+// - Webhook signature verification prevents unauthorized requests
+// - Only processes events from Stripe's servers
+// - Validates all customer data before processing
+//
+// Flow:
+// 1. Verify webhook signature
+// 2. Extract customer and order data from session
+// 3. Prepare order for Printful fulfillment
+// 4. (Future) Automatically create Printful order
 app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res) => {
   const sig = req.headers['stripe-signature'];
   const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -25,7 +70,7 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res)
   let event;
 
   try {
-    // Verify webhook signature
+    // Verify webhook signature - ensures request is from Stripe
     event = stripe.webhooks.constructEvent(req.body, sig, endpointSecret);
   } catch (error) {
     console.error('[Webhook Signature Verification Failed]', error.message);
@@ -74,28 +119,35 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res)
       // Call Printful order creation
       if (orderItems.length > 0 && customer.address1) {
         // Import Printful router's createPrintfulOrder function
-        // Note: We'll need to export this from printful.js
-        const printfulRouter = require('./routes/printful');
+        const { createPrintfulOrder } = require('./routes/printful');
 
-        // For now, log that we would create the order
-        // In production, you'd call the Printful API here
+        // Log order ready for fulfillment
         console.log('[Webhook] ✅ Order ready for Printful fulfillment');
         console.log('[Webhook] Session ID:', session.id);
         console.log('[Webhook] Payment Status:', session.payment_status);
 
-        // TODO: Create actual Printful order once products are set up
+        // TODO: Uncomment once Printful products are configured
+        // This will automatically create orders in Printful when payments succeed
         // const printfulOrder = await createPrintfulOrder(customer, orderItems);
+        // if (printfulOrder.success) {
+        //   console.log('[Webhook] Printful order created:', printfulOrder.orderId);
+        // } else {
+        //   console.error('[Webhook] Printful order failed:', printfulOrder.error);
+        // }
       } else {
         console.warn('[Webhook] ⚠️ Missing customer address or order items');
       }
 
       res.json({ received: true, processed: true });
     } catch (error) {
-      console.error('[Webhook Processing Error]', error);
+      console.error('[Webhook Processing Error]', {
+        message: error.message,
+        sessionId: session.id,
+      });
       res.status(500).json({ received: true, processed: false, error: error.message });
     }
   } else {
-    // Other event types
+    // Other event types (not currently handled)
     console.log(`[Webhook] Unhandled event type: ${event.type}`);
     res.json({ received: true });
   }
@@ -108,8 +160,9 @@ app.use(express.json()); // Parse JSON request bodies
 const stripeRouter = require('./routes/stripe');
 const printfulRouter = require('./routes/printful');
 
-// Mount routes
-app.use('/api/stripe', stripeRouter);
+// Mount routes with rate limiting
+// Stripe routes get stricter rate limiting for payment security
+app.use('/api/stripe', paymentLimiter, stripeRouter);
 app.use('/api/printful', printfulRouter);
 
 // Health check route
