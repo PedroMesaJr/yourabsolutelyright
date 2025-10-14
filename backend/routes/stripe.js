@@ -68,18 +68,39 @@ router.post('/create-checkout-session', async (req, res) => {
     console.log(`[Stripe Checkout] Creating session for ${items.length} item(s)`);
 
     // Format line items for Stripe checkout
-    const lineItems = items.map((item) => ({
-      price_data: {
-        currency: 'usd',
-        product_data: {
-          name: item.name,
-          description: item.description || undefined,
-          images: item.image ? [item.image] : undefined,
+    const lineItems = items.map((item) => {
+      // Stripe requires absolute URLs for images
+      // If image is a relative path, convert it to absolute URL
+      // If no image or invalid URL, omit the images field
+      let imageUrl = undefined;
+      if (item.image && typeof item.image === 'string') {
+        try {
+          // Check if it's already an absolute URL
+          if (item.image.startsWith('http://') || item.image.startsWith('https://')) {
+            imageUrl = item.image;
+          } else if (item.image.startsWith('/')) {
+            // Relative path - convert to absolute URL using frontend URL
+            const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+            imageUrl = `${frontendUrl}${item.image}`;
+          }
+        } catch (error) {
+          console.warn(`[Stripe] Invalid image URL for ${item.name}:`, item.image);
+        }
+      }
+
+      return {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: item.name,
+            description: item.description || undefined,
+            images: imageUrl ? [imageUrl] : undefined,
+          },
+          unit_amount: Math.round(item.price * 100), // Convert dollars to cents
         },
-        unit_amount: Math.round(item.price * 100), // Convert dollars to cents
-      },
-      quantity: item.quantity || 1,
-    }));
+        quantity: item.quantity || 1,
+      };
+    });
 
     // Create Stripe checkout session
     const session = await stripe.checkout.sessions.create({
