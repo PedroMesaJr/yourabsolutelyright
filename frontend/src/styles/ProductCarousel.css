@@ -41,46 +41,23 @@
 .carousel-container {
   display: flex;
   gap: 2rem;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
-  scroll-behavior: smooth;
   padding: 1rem 2rem;
   margin: 0 auto;
   max-width: 100%;
-  -webkit-overflow-scrolling: touch;
-
-  /* Subtle scrollbar styling */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(230, 126, 94, 0.3) rgba(60, 53, 50, 0.1);
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  position: relative;
 }
 
-/* Webkit browsers (Chrome, Safari, Edge) scrollbar styling */
-.carousel-container::-webkit-scrollbar {
-  height: 8px;
+.carousel-container:active {
+  cursor: grabbing;
 }
 
-.carousel-container::-webkit-scrollbar-track {
-  background: rgba(60, 53, 50, 0.1);
-  border-radius: 4px;
-}
-
-.carousel-container::-webkit-scrollbar-thumb {
-  background: rgba(230, 126, 94, 0.3);
-  border-radius: 4px;
-  transition: background 250ms ease;
-}
-
-.carousel-container::-webkit-scrollbar-thumb:hover {
-  background: rgba(230, 126, 94, 0.5);
-}
-
-/* Smooth scroll snap for better UX */
-.carousel-container {
-  scroll-snap-type: x proximity;
-}
-
+/* Product cards should not shrink */
 .carousel-container > * {
-  scroll-snap-align: start;
   flex-shrink: 0;
 }
 

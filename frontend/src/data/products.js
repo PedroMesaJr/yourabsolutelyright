@@ -26,6 +26,38 @@ export const products = [
     image: "/images/products/hoodie-gray.png",
     printfulId: "placeholder",
   },
+  {
+    id: 4,
+    name: "Travel Mug",
+    description: "Take your absolutely right attitude on the go with this insulated stainless steel travel mug.",
+    price: 27.99,
+    image: "/images/products/mug-classic.png",
+    printfulId: "placeholder",
+  },
+  {
+    id: 5,
+    name: "Premium Tee",
+    description: "Upgrade your wardrobe with this premium blend tee. Soft, stylish, and absolutely right.",
+    price: 29.99,
+    image: "/images/products/tee-black.png",
+    printfulId: "placeholder",
+  },
+  {
+    id: 6,
+    name: "Canvas Tote",
+    description: "Carry your essentials and your confidence with this durable canvas tote bag.",
+    price: 22.99,
+    image: "/images/products/mug-classic.png",
+    printfulId: "placeholder",
+  },
+  {
+    id: 7,
+    name: "Zip Hoodie",
+    description: "Full-zip hoodie for maximum comfort and absolutely right vibes. Perfect for any occasion.",
+    price: 49.99,
+    image: "/images/products/hoodie-gray.png",
+    printfulId: "placeholder",
+  },
 ];
 
 export default products;
