@@ -17,6 +17,7 @@ function ProductCard({ product }) {
   const [selectedVariant, setSelectedVariant] = useState(null);
   const [showCouponModal, setShowCouponModal] = useState(false);
   const [couponCode, setCouponCode] = useState('');
+  const [showDescriptionModal, setShowDescriptionModal] = useState(false);
   const imageRef = useRef(null);
   const cardRef = useRef(null);
 
@@ -327,7 +328,15 @@ function ProductCard({ product }) {
 
         <div className="product-info">
         <h3 className="product-name">{product.name}</h3>
-        <p className="product-description">{product.description}</p>
+        <p className="product-description">{product.shortDescription || product.description}</p>
+        {product.shortDescription && (
+          <button
+            className="view-more-btn"
+            onClick={() => setShowDescriptionModal(true)}
+          >
+            View More
+          </button>
+        )}
         {error && (
           <div className="product-error" style={{
             color: '#8B0000',
@@ -367,6 +376,19 @@ function ProductCard({ product }) {
         </div>
         </div>
       </div>
+
+      {/* Description modal */}
+      {showDescriptionModal && (
+        <div className="size-modal description-modal" onClick={() => setShowDescriptionModal(false)}>
+          <div className="size-modal-content description-modal-content" onClick={(e) => e.stopPropagation()}>
+            <button className="size-modal-close" onClick={() => setShowDescriptionModal(false)}>×</button>
+            <h3 className="size-modal-title">{product.name}</h3>
+            <div className="description-scroll-container">
+              <p className="description-full-text">{product.description}</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Zoom modal rendered outside the card using React Portal */}
       {showZoom && ReactDOM.createPortal(
