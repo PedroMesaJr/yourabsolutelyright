@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import ProductCard from './ProductCard';
 import products from '../data/products';
 import '../styles/ProductCarousel.css';
@@ -9,6 +9,9 @@ function ProductCarousel() {
   const [copied, setCopied] = useState(false);
   const animationRef = useRef(null);
   const autoScrollEnabled = useRef(true);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
 
   // ZERO-LATENCY: Preload ALL product images on mount for instant switching
   useEffect(() => {
@@ -32,37 +35,35 @@ function ProductCarousel() {
     preloadImages();
   }, []);
 
+  // Smooth auto-scroll effect with RAF
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    // Duplicate products for infinite scroll effect
-    const originalChildren = Array.from(container.children);
-    originalChildren.forEach(child => {
-      const clone = child.cloneNode(true);
-      container.appendChild(clone);
-    });
-
     let scrollPosition = 0;
-    const baseSpeed = 1.5; // Scroll speed (pixels per frame)
+    const baseSpeed = 0.5; // Slower, smoother scroll
+    let lastTimestamp = 0;
 
-    const animate = () => {
+    const animate = (timestamp) => {
       if (!container) return;
 
-      // Auto-scroll when enabled
-      if (autoScrollEnabled.current) {
-        scrollPosition += baseSpeed;
+      // Calculate delta time for consistent speed across devices
+      const deltaTime = timestamp - lastTimestamp;
+      lastTimestamp = timestamp;
 
-        // Handle infinite looping - reset to start when halfway through
-        const scrollWidth = container.scrollWidth / 2;
+      // Auto-scroll when enabled and not being interacted with
+      if (autoScrollEnabled.current && !isDragging.current) {
+        scrollPosition += baseSpeed * (deltaTime / 16); // Normalize to 60fps
 
-        if (scrollPosition >= scrollWidth) {
+        // Infinite loop - reset when reaching end
+        const maxScroll = container.scrollWidth - container.clientWidth;
+        if (scrollPosition >= maxScroll) {
           scrollPosition = 0;
         }
 
         container.scrollLeft = scrollPosition;
       } else {
-        // Update scrollPosition to match manual scroll position when paused
+        // Sync scrollPosition when user is controlling
         scrollPosition = container.scrollLeft;
       }
 
@@ -79,29 +80,77 @@ function ProductCarousel() {
     };
   }, []);
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = useCallback(() => {
     setShowControls(true);
-    autoScrollEnabled.current = false; // Pause auto-scroll
-  };
+    autoScrollEnabled.current = false;
+  }, []);
 
-  const handleMouseLeave = () => {
+  const handleMouseLeave = useCallback(() => {
     setShowControls(false);
-    autoScrollEnabled.current = true; // Resume auto-scroll
-  };
+    autoScrollEnabled.current = true;
+  }, []);
 
-  const scrollNext = () => {
+  // Mouse drag to scroll
+  const handleMouseDown = useCallback((e) => {
+    if (e.target.closest('.product-card')) return; // Don't drag if clicking on card
+    isDragging.current = true;
+    startX.current = e.pageX - containerRef.current.offsetLeft;
+    scrollLeft.current = containerRef.current.scrollLeft;
+    autoScrollEnabled.current = false;
+    containerRef.current.style.cursor = 'grabbing';
+  }, []);
+
+  const handleMouseMove = useCallback((e) => {
+    if (!isDragging.current) return;
+    e.preventDefault();
+    const x = e.pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX.current) * 2; // Multiply for faster scroll
+    containerRef.current.scrollLeft = scrollLeft.current - walk;
+  }, []);
+
+  const handleMouseUp = useCallback(() => {
+    isDragging.current = false;
+    containerRef.current.style.cursor = 'grab';
+  }, []);
+
+  // Touch support for mobile
+  const handleTouchStart = useCallback((e) => {
+    if (e.target.closest('.product-card')) return;
+    isDragging.current = true;
+    startX.current = e.touches[0].pageX - containerRef.current.offsetLeft;
+    scrollLeft.current = containerRef.current.scrollLeft;
+    autoScrollEnabled.current = false;
+  }, []);
+
+  const handleTouchMove = useCallback((e) => {
+    if (!isDragging.current) return;
+    const x = e.touches[0].pageX - containerRef.current.offsetLeft;
+    const walk = (x - startX.current) * 2;
+    containerRef.current.scrollLeft = scrollLeft.current - walk;
+  }, []);
+
+  const handleTouchEnd = useCallback(() => {
+    isDragging.current = false;
+    setTimeout(() => {
+      if (!containerRef.current?.matches(':hover')) {
+        autoScrollEnabled.current = true;
+      }
+    }, 100);
+  }, []);
+
+  const scrollNext = useCallback(() => {
     if (containerRef.current) {
-      const cardWidth = 632; // Product card width (600px) + gap (32px)
+      const cardWidth = 632;
       containerRef.current.scrollBy({ left: cardWidth, behavior: 'smooth' });
     }
-  };
+  }, []);
 
-  const scrollPrev = () => {
+  const scrollPrev = useCallback(() => {
     if (containerRef.current) {
-      const cardWidth = 632; // Product card width (600px) + gap (32px)
+      const cardWidth = 632;
       containerRef.current.scrollBy({ left: -cardWidth, behavior: 'smooth' });
     }
-  };
+  }, []);
 
   const handleCopyCode = async () => {
     try {
@@ -147,7 +196,17 @@ function ProductCarousel() {
             </button>
           </>
         )}
-        <div className="carousel-container" ref={containerRef}>
+        <div
+          className="carousel-container"
+          ref={containerRef}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}

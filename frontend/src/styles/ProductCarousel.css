@@ -120,6 +120,10 @@
   -webkit-user-select: none;
   position: relative;
   scroll-behavior: auto;
+  cursor: grab;
+  will-change: scroll-position;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
 }
 
 /* Hide scrollbar */
@@ -189,6 +193,17 @@
 /* Product cards should not shrink */
 .carousel-container > * {
   flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+/* Smooth transitions for carousel interactions */
+.carousel-container.dragging {
+  scroll-behavior: auto;
+  cursor: grabbing;
+}
+
+.carousel-container:not(.dragging) {
+  scroll-behavior: smooth;
 }
 
 /* Add fade effect on edges */
