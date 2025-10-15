@@ -4,17 +4,20 @@
   min-height: 100vh;
   height: 100vh;
   background-color: #D06D4F;
-  padding: 6rem 2rem 2rem;
+  padding: 5.5rem 2rem 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  overflow: hidden;
+  padding-top: calc(50vh - 200px);
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .contact-container {
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
+  padding-bottom: 2rem;
 }
 
 .contact-card {
