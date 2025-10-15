@@ -3,5 +3,11 @@
   "outputDirectory": "frontend/build",
   "installCommand": "cd frontend && npm install",
   "framework": null,
-  "devCommand": "cd frontend && npm start"
+  "devCommand": "cd frontend && npm start",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
