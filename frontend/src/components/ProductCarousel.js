@@ -37,16 +37,31 @@ function ProductCarousel() {
 
   // Infinite scroll auto-animation
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const baseSpeed = 1; // Pixels per frame (smooth speed)
+    const baseSpeed = 1.5; // Pixels per frame (smooth speed)
+    let frameCount = 0;
 
     const animate = () => {
-      if (!container) return;
+      const container = containerRef.current;
+      if (!container) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      // Debug log every 60 frames (1 second at 60fps)
+      frameCount++;
+      if (frameCount === 60) {
+        console.log('[Carousel] Auto-scroll:', {
+          enabled: autoScrollEnabled.current,
+          dragging: isDragging.current,
+          scrollLeft: container.scrollLeft,
+          scrollWidth: container.scrollWidth
+        });
+        frameCount = 0;
+      }
 
       // Auto-scroll when enabled and not being interacted with
       if (autoScrollEnabled.current && !isDragging.current) {
+        // Increment scroll position
         container.scrollLeft += baseSpeed;
 
         // Infinite loop: When we've scrolled past halfway, jump back to start
@@ -54,18 +69,21 @@ function ProductCarousel() {
         const halfWidth = container.scrollWidth / 2;
         if (container.scrollLeft >= halfWidth) {
           container.scrollLeft = 0;
+          console.log('[Carousel] ♻️ Loop reset at halfway point');
         }
       }
 
       animationRef.current = requestAnimationFrame(animate);
     };
 
-    // Start animation
+    // Start animation immediately
+    console.log('[Carousel] 🚀 Starting auto-scroll animation');
     animationRef.current = requestAnimationFrame(animate);
 
     return () => {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
+        console.log('[Carousel] 🛑 Stopping auto-scroll animation');
       }
     };
   }, []);
