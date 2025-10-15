@@ -7,6 +7,7 @@ import ProductCarousel from './components/ProductCarousel';
 import Footer from './components/Footer';
 import LoadingSpinner from './components/LoadingSpinner';
 import { startKeepAlive } from './utils/keepAlive';
+import { Analytics } from '@vercel/analytics/react';
 
 // ZERO-LATENCY: Lazy load routes for faster initial page load
 const Success = lazy(() => import('./pages/Success'));
@@ -52,6 +53,7 @@ function App() {
             <Route path="/cancel" element={<Cancel />} />
           </Routes>
         </Suspense>
+        <Analytics />
       </div>
     </Router>
   );
