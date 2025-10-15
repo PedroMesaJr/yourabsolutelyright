@@ -64,19 +64,12 @@ function Contact() {
       <div className="contact-page">
         <div className="contact-container">
           <div className="contact-card">
-            <h1 className="contact-title">Get in Touch</h1>
-            <p className="contact-intro">
-              You're absolutely right to reach out.
-            </p>
-
             <div className="contact-content">
               {submitted ? (
                 <div className="contact-success">
                   <div className="success-icon">✅</div>
-                  <h2 className="success-title">Message Sent!</h2>
-                  <p className="success-text">
-                    We'll respond within 24-48 hours.
-                  </p>
+                  <h2 className="success-title">Message Sent</h2>
+                  <p className="success-text">We'll respond within 24-48 hours.</p>
                   <button
                     className="btn-send-another"
                     onClick={() => setSubmitted(false)}
@@ -86,12 +79,16 @@ function Contact() {
                 </div>
               ) : (
                 <>
+                  <div className="contact-header">
+                    <h1 className="contact-title">Contact</h1>
+                    <a href="mailto:support@yourabsolutelyright.com" className="contact-email-link">
+                      support@yourabsolutelyright.com
+                    </a>
+                  </div>
+
                   <form className="contact-form" onSubmit={handleSubmit}>
                     <div className="form-row">
                       <div className="form-group">
-                        <label htmlFor="name" className="form-label">
-                          Name <span className="required">*</span>
-                        </label>
                         <input
                           type="text"
                           id="name"
@@ -100,14 +97,11 @@ function Contact() {
                           value={formData.name}
                           onChange={handleChange}
                           required
-                          placeholder="Your name"
+                          placeholder="Name"
                         />
                       </div>
 
                       <div className="form-group">
-                        <label htmlFor="email" className="form-label">
-                          Email <span className="required">*</span>
-                        </label>
                         <input
                           type="email"
                           id="email"
@@ -116,52 +110,43 @@ function Contact() {
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          placeholder="your@email.com"
+                          placeholder="Email"
+                        />
+                      </div>
+
+                      <div className="form-group">
+                        <select
+                          id="subject"
+                          name="subject"
+                          className="form-select"
+                          value={formData.subject}
+                          onChange={handleChange}
+                          required
+                        >
+                          <option value="">Subject</option>
+                          <option value="order-issue">Order Issue</option>
+                          <option value="payment-problem">Payment Problem</option>
+                          <option value="general-question">General Question</option>
+                          <option value="product-suggestion">Product Suggestion</option>
+                          <option value="legal">Legal Matter</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          id="orderNumber"
+                          name="orderNumber"
+                          className="form-input"
+                          value={formData.orderNumber}
+                          onChange={handleChange}
+                          placeholder="Order # (optional)"
                         />
                       </div>
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="subject" className="form-label">
-                        Subject <span className="required">*</span>
-                      </label>
-                      <select
-                        id="subject"
-                        name="subject"
-                        className="form-select"
-                        value={formData.subject}
-                        onChange={handleChange}
-                        required
-                      >
-                        <option value="">Select a subject...</option>
-                        <option value="order-issue">Order Issue</option>
-                        <option value="payment-problem">Payment Problem</option>
-                        <option value="general-question">General Question</option>
-                        <option value="product-suggestion">Product Suggestion</option>
-                        <option value="legal">Legal Matter</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="orderNumber" className="form-label">
-                        Order Number <span className="optional">(optional)</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="orderNumber"
-                        name="orderNumber"
-                        className="form-input"
-                        value={formData.orderNumber}
-                        onChange={handleChange}
-                        placeholder="If applicable"
-                      />
-                    </div>
-
-                    <div className="form-group">
-                      <label htmlFor="message" className="form-label">
-                        Message <span className="required">*</span>
-                      </label>
                       <textarea
                         id="message"
                         name="message"
@@ -169,8 +154,8 @@ function Contact() {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        rows="4"
-                        placeholder="How can we help?"
+                        rows="3"
+                        placeholder="Message"
                       />
                     </div>
 
@@ -191,20 +176,10 @@ function Contact() {
                           <span>Sending...</span>
                         </>
                       ) : (
-                        'Send Message'
+                        'Send'
                       )}
                     </button>
                   </form>
-
-                  <div className="contact-divider"></div>
-
-                  <div className="contact-email-section">
-                    <p className="email-or">Or email directly:</p>
-                    <a href="mailto:support@yourabsolutelyright.com" className="contact-email">
-                      support@yourabsolutelyright.com
-                    </a>
-                    <p className="email-response">Response time: 24-48 hours</p>
-                  </div>
                 </>
               )}
             </div>
