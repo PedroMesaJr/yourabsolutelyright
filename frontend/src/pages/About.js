@@ -18,7 +18,7 @@ function About() {
             </p>
 
             <p className="about-text">
-              We put it on merch. Now you can wear the reassurance.
+              You're absolutely right — we put it on merch. Now you can wear the reassurance.
             </p>
 
             <div className="about-divider"></div>
@@ -29,14 +29,14 @@ function About() {
             </p>
 
             <p className="about-text">
-              When you wear it, people who know, know. And people who don't will ask.
+              You're absolutely right to wear it. People who know, know. And people who don't will ask.
             </p>
 
             <div className="about-divider"></div>
 
             <h2 className="about-subtitle">How It Works</h2>
             <p className="about-text">
-              Products are printed on-demand by Printful. Payments processed by Stripe.
+              You're absolutely right to wonder. Products are printed on-demand by Printful. Payments processed by Stripe.
               Ships worldwide.
             </p>
 

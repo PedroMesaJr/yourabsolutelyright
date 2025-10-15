@@ -68,8 +68,8 @@ function Contact() {
               {submitted ? (
                 <div className="contact-success">
                   <div className="success-icon">✅</div>
-                  <h2 className="success-title">Message Sent</h2>
-                  <p className="success-text">We'll respond within 24-48 hours.</p>
+                  <h2 className="success-title">You're Absolutely Right to Reach Out</h2>
+                  <p className="success-text">Message sent! We'll respond within 24-48 hours.</p>
                   <button
                     className="btn-send-another"
                     onClick={() => setSubmitted(false)}
@@ -81,7 +81,7 @@ function Contact() {
                 <>
                   <div className="contact-header">
                     <div className="header-left">
-                      <h1 className="contact-title">Get in Touch</h1>
+                      <h1 className="contact-title">You're Absolutely Right to Ask</h1>
                       <p className="contact-subtitle">We typically respond within 24-48 hours</p>
                     </div>
                     <a href="mailto:support@yourabsolutelyright.com" className="contact-email-link">

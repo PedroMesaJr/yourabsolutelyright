@@ -330,7 +330,7 @@ function ProductCard({ product }) {
         <div className="size-modal" onClick={() => setShowCouponModal(false)}>
           <div className="size-modal-content coupon-modal-content" onClick={(e) => e.stopPropagation()}>
             <button className="size-modal-close" onClick={() => setShowCouponModal(false)}>×</button>
-            <h3 className="size-modal-title">Have a Coupon Code?</h3>
+            <h3 className="size-modal-title">You're Absolutely Right to Save Money</h3>
             <p className="size-modal-product">Enter your code below or skip to continue</p>
             <div className="coupon-input-wrapper">
               <input

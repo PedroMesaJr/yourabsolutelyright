@@ -16,7 +16,7 @@ function FAQ() {
               <div className="faq-item">
                 <h2 className="faq-question">Do you ship internationally?</h2>
                 <p className="faq-answer">
-                  Worldwide. Printful handles fulfillment globally.
+                  You're absolutely right, we do. Worldwide. Printful handles fulfillment globally.
                 </p>
               </div>
 
@@ -25,7 +25,7 @@ function FAQ() {
               <div className="faq-item">
                 <h2 className="faq-question">How long until it arrives?</h2>
                 <p className="faq-answer">
-                  2-7 days to print, 3-10 days to ship. Worth it.
+                  You're absolutely right to ask. 2-7 days to print, 3-10 days to ship. Worth the wait.
                 </p>
               </div>
 
@@ -34,7 +34,7 @@ function FAQ() {
               <div className="faq-item">
                 <h2 className="faq-question">What if it arrives damaged?</h2>
                 <p className="faq-answer">
-                  Send us photos. We'll replace it. Manufacturing defects only.
+                  You're absolutely right to be concerned. Send us photos. We'll replace it. Manufacturing defects only.
                 </p>
               </div>
 
@@ -43,7 +43,7 @@ function FAQ() {
               <div className="faq-item">
                 <h2 className="faq-question">Is this official Claude merch?</h2>
                 <p className="faq-answer">
-                  No. This is fan-made. Anthropic doesn't endorse this.
+                  You're absolutely right to check. No. This is fan-made. Anthropic doesn't endorse this.
                 </p>
               </div>
 

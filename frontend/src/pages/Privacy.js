@@ -14,7 +14,7 @@ function Privacy() {
 
             <div className="privacy-content">
               <p className="privacy-intro">
-                We collect minimal data and don't sell your information.
+                You're absolutely right to ask. We collect minimal data and don't sell your information.
               </p>
 
               <div className="privacy-section">
@@ -72,7 +72,7 @@ function Privacy() {
               </div>
 
               <div className="privacy-section">
-                <h2 className="privacy-heading">Your Rights</h2>
+                <h2 className="privacy-heading">Your Rights (You're Absolutely Right to Have Them)</h2>
                 <p className="privacy-text">
                   • Request a copy of your data<br/>
                   • Request data deletion<br/>

@@ -8,11 +8,11 @@ function Cancel() {
       <div className="cancel-container">
         <div className="cancel-icon">✕</div>
         <h1 className="cancel-title">Payment Cancelled</h1>
-        <h2 className="cancel-subtitle">No worries, nothing was charged</h2>
+        <h2 className="cancel-subtitle">You're absolutely right to reconsider. Nothing was charged.</h2>
 
         <p className="cancel-message">
           Your payment was cancelled. If you experienced any issues or have questions,
-          please don't hesitate to reach out.
+          you're absolutely right to reach out.
         </p>
 
         <div className="cancel-actions">
@@ -22,7 +22,7 @@ function Cancel() {
         </div>
 
         <div className="cancel-help">
-          <h3>Need help?</h3>
+          <h3>You're absolutely right to need help</h3>
           <p>If you encountered any problems during checkout, here are some tips:</p>
           <ul>
             <li>Make sure your card information is correct</li>

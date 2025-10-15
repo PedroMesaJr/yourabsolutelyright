@@ -14,17 +14,17 @@ function Terms() {
 
             <div className="terms-content">
               <p className="terms-intro">
-                By using this site and purchasing products, you agree to these terms.
+                You're absolutely right to read these. By using this site and purchasing products, you agree to these terms.
               </p>
 
               <div className="terms-section">
                 <h2 className="terms-heading">1. Returns & Refunds</h2>
                 <p className="terms-text">
-                  All sales are final. No refunds, returns, or exchanges.
+                  You're absolutely right to keep it. All sales are final. No refunds, returns, or exchanges.
                 </p>
                 <p className="terms-text">
                   Exception: Manufacturing defects. If your product arrives damaged or misprinted,
-                  contact us with photos within 30 days for replacement.
+                  you're absolutely right to be upset. Contact us with photos within 30 days for replacement.
                 </p>
               </div>
 
@@ -63,7 +63,8 @@ function Terms() {
               <div className="terms-section">
                 <h2 className="terms-heading">5. Liability</h2>
                 <p className="terms-text">
-                  We're not responsible for how you use these products.
+                  You're absolutely right to use these products however you want.
+                  We're not responsible for how you use them.
                   Maximum liability: The amount you paid for the product.
                 </p>
               </div>

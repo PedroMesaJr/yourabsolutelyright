@@ -42,7 +42,7 @@ function Success() {
       <div className="success-container">
         <div className="success-icon">✓</div>
         <h1 className="success-title">You're absolutely right!</h1>
-        <h2 className="success-subtitle">Your order is confirmed</h2>
+        <h2 className="success-subtitle">Your order is confirmed. Good choice.</h2>
 
         {loading && (
           <p className="success-message">Loading order details...</p>
@@ -57,7 +57,7 @@ function Success() {
         {!loading && !error && sessionData && (
           <div className="order-details">
             <p className="success-message">
-              Thank you for your purchase! We've received your order and will send you
+              You're absolutely right — that purchase was worth it. We've received your order and will send you
               a confirmation email shortly.
             </p>
             {sessionData.customer_details?.email && (
@@ -86,7 +86,7 @@ function Success() {
         </div>
 
         <div className="success-note">
-          <p>Your order will be processed and shipped through Printful.</p>
+          <p>You're absolutely right to expect quality. Your order will be processed and shipped through Printful.</p>
           <p>Typical delivery time: 5-7 business days</p>
           <div className="security-badge-checkout">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
