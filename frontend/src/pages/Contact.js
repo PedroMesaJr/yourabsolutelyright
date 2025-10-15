@@ -80,8 +80,12 @@ function Contact() {
               ) : (
                 <>
                   <div className="contact-header">
-                    <h1 className="contact-title">Contact</h1>
+                    <div className="header-left">
+                      <h1 className="contact-title">Get in Touch</h1>
+                      <p className="contact-subtitle">We typically respond within 24-48 hours</p>
+                    </div>
                     <a href="mailto:support@yourabsolutelyright.com" className="contact-email-link">
+                      <span className="email-icon">✉</span>
                       support@yourabsolutelyright.com
                     </a>
                   </div>
@@ -165,20 +169,35 @@ function Contact() {
                       </div>
                     )}
 
-                    <button
-                      type="submit"
-                      className={`btn-submit ${loading ? 'btn-loading' : ''}`}
-                      disabled={loading}
-                    >
-                      {loading ? (
-                        <>
-                          <LoadingSpinner size="small" color="white" />
-                          <span>Sending...</span>
-                        </>
-                      ) : (
-                        'Send'
-                      )}
-                    </button>
+                    <div className="form-footer">
+                      <div className="contact-info">
+                        <div className="info-item">
+                          <span className="info-label">Response Time</span>
+                          <span className="info-value">24-48 hours</span>
+                        </div>
+                        <div className="info-item">
+                          <span className="info-label">Support</span>
+                          <span className="info-value">Orders & General</span>
+                        </div>
+                      </div>
+                      <button
+                        type="submit"
+                        className={`btn-submit ${loading ? 'btn-loading' : ''}`}
+                        disabled={loading}
+                      >
+                        {loading ? (
+                          <>
+                            <LoadingSpinner size="small" color="white" />
+                            <span>Sending...</span>
+                          </>
+                        ) : (
+                          <>
+                            <span>Send Message</span>
+                            <span className="btn-arrow">→</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
                   </form>
                 </>
               )}
