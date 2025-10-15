@@ -35,36 +35,26 @@ function ProductCarousel() {
     preloadImages();
   }, []);
 
-  // Smooth auto-scroll effect with RAF
+  // Infinite scroll auto-animation
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    let scrollPosition = 0;
-    const baseSpeed = 0.5; // Slower, smoother scroll
-    let lastTimestamp = 0;
+    const baseSpeed = 1; // Pixels per frame (smooth speed)
 
-    const animate = (timestamp) => {
+    const animate = () => {
       if (!container) return;
-
-      // Calculate delta time for consistent speed across devices
-      const deltaTime = timestamp - lastTimestamp;
-      lastTimestamp = timestamp;
 
       // Auto-scroll when enabled and not being interacted with
       if (autoScrollEnabled.current && !isDragging.current) {
-        scrollPosition += baseSpeed * (deltaTime / 16); // Normalize to 60fps
+        container.scrollLeft += baseSpeed;
 
-        // Infinite loop - reset when reaching end
-        const maxScroll = container.scrollWidth - container.clientWidth;
-        if (scrollPosition >= maxScroll) {
-          scrollPosition = 0;
+        // Infinite loop: When we've scrolled past halfway, jump back to start
+        // This creates seamless infinite scroll with duplicated content
+        const halfWidth = container.scrollWidth / 2;
+        if (container.scrollLeft >= halfWidth) {
+          container.scrollLeft = 0;
         }
-
-        container.scrollLeft = scrollPosition;
-      } else {
-        // Sync scrollPosition when user is controlling
-        scrollPosition = container.scrollLeft;
       }
 
       animationRef.current = requestAnimationFrame(animate);
@@ -207,8 +197,12 @@ function ProductCarousel() {
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
         >
+          {/* Render products twice for infinite scroll effect */}
           {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={`original-${product.id}`} product={product} />
+          ))}
+          {products.map((product) => (
+            <ProductCard key={`duplicate-${product.id}`} product={product} />
           ))}
         </div>
       </div>
