@@ -7,10 +7,6 @@ const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 
-// Initialize database on startup
-const { initializeDatabase } = require('./database/init');
-initializeDatabase();
-
 // Create Express app instance
 const app = express();
 
@@ -144,35 +140,7 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res)
       console.log('[Webhook] Customer:', customer.name, customer.email);
       console.log('[Webhook] Order items:', orderItems.length);
 
-      // STEP 1: Save order to database FIRST (prevents data loss)
-      const Order = require('./models/Order');
-      let savedOrder = null;
-
-      try {
-        savedOrder = Order.create({
-          stripeSessionId: session.id,
-          stripePaymentStatus: session.payment_status,
-          stripeAmountTotal: session.amount_total / 100, // Convert cents to dollars
-          customerEmail: customer.email,
-          customerName: customer.name,
-          customerPhone: customer.phone,
-          shippingAddress: {
-            address1: customer.address1,
-            address2: customer.address2,
-            city: customer.city,
-            state: customer.state,
-            country: customer.country,
-            zip: customer.zip
-          },
-          orderItems: orderItems
-        });
-        console.log('[Webhook] ✅ Order saved to database:', savedOrder.id);
-      } catch (dbError) {
-        console.error('[Webhook] ❌ Database save failed:', dbError.message);
-        // Continue anyway - we'll try to create Printful order
-      }
-
-      // STEP 2: Call Printful order creation
+      // Call Printful order creation
       if (orderItems.length > 0 && customer.address1) {
         // Import Printful router's createPrintfulOrder function
         const { createPrintfulOrder } = require('./routes/printful');
@@ -186,21 +154,8 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res)
         const printfulOrder = await createPrintfulOrder(customer, orderItems);
         if (printfulOrder.success) {
           console.log('[Webhook] ✅ Printful order created:', printfulOrder.orderId);
-
-          // Update database with Printful order ID
-          if (savedOrder) {
-            Order.updatePrintfulInfo(savedOrder.id, {
-              orderId: printfulOrder.orderId,
-              status: 'created'
-            });
-          }
         } else {
           console.error('[Webhook] ❌ Printful order failed:', printfulOrder.error);
-
-          // Mark order as failed in database for retry
-          if (savedOrder) {
-            Order.markAsFailed(savedOrder.id, printfulOrder.error);
-          }
         }
       } else {
         console.warn('[Webhook] ⚠️ Missing customer address or order items');
@@ -246,35 +201,11 @@ app.use((err, _req, res, _next) => {
   res.status(500).json({ error: 'Internal server error' });
 });
 
-// Start retry scheduler for failed Printful orders
-const { startRetryScheduler } = require('./utils/retry');
-const retryInterval = startRetryScheduler(5); // Check every 5 minutes
-console.log('🔄 Retry scheduler started (checking every 5 minutes)');
-
 // Start server
 app.listen(PORT, () => {
   console.log(`🚀 Server is running on http://localhost:${PORT}`);
   console.log(`📊 Health check available at http://localhost:${PORT}/health`);
-  console.log(`💾 Database initialized with order tracking`);
-  console.log(`🔄 Automatic retry system active`);
 }).on('error', (err) => {
   console.error('❌ Failed to start server:', err.message);
   process.exit(1);
-});
-
-// Graceful shutdown
-process.on('SIGTERM', () => {
-  console.log('SIGTERM received, shutting down gracefully...');
-  clearInterval(retryInterval);
-  const { closeDatabase } = require('./utils/db');
-  closeDatabase();
-  process.exit(0);
-});
-
-process.on('SIGINT', () => {
-  console.log('SIGINT received, shutting down gracefully...');
-  clearInterval(retryInterval);
-  const { closeDatabase } = require('./utils/db');
-  closeDatabase();
-  process.exit(0);
 });
