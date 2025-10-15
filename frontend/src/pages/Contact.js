@@ -64,26 +64,24 @@ function Contact() {
       <div className="contact-page">
         <div className="contact-container">
           <div className="contact-card">
-            <h1 className="contact-title">Contact Us</h1>
+            <h1 className="contact-title">Get in Touch</h1>
+            <p className="contact-intro">
+              You're absolutely right to reach out.
+            </p>
 
             <div className="contact-content">
-              <p className="contact-intro">
-                Got questions? Issues? Complaints? Compliments?
-                You're absolutely right to reach out.
-              </p>
-
               {submitted ? (
                 <div className="contact-success">
                   <div className="success-icon">✅</div>
                   <h2 className="success-title">Message Sent!</h2>
                   <p className="success-text">
-                    We'll get back to you within 24-48 hours. Usually faster.
+                    We'll respond within 24-48 hours.
                   </p>
                   <button
                     className="btn-send-another"
                     onClick={() => setSubmitted(false)}
                   >
-                    Send Another Message
+                    Send Another
                   </button>
                 </div>
               ) : (
@@ -171,8 +169,8 @@ function Contact() {
                         value={formData.message}
                         onChange={handleChange}
                         required
-                        rows="6"
-                        placeholder="Tell us what's up..."
+                        rows="4"
+                        placeholder="How can we help?"
                       />
                     </div>
 
@@ -201,93 +199,14 @@ function Contact() {
                   <div className="contact-divider"></div>
 
                   <div className="contact-email-section">
-                    <div className="email-icon">📧</div>
-                    <p className="email-or">Or email us directly:</p>
+                    <p className="email-or">Or email directly:</p>
                     <a href="mailto:support@yourabsolutelyright.com" className="contact-email">
                       support@yourabsolutelyright.com
                     </a>
+                    <p className="email-response">Response time: 24-48 hours</p>
                   </div>
                 </>
               )}
-
-              <div className="contact-divider"></div>
-
-              <div className="contact-reasons">
-                <h2 className="contact-heading">What to Email Us About</h2>
-
-                <div className="reason-item">
-                  <span className="reason-icon">📦</span>
-                  <div className="reason-content">
-                    <h3 className="reason-title">Order Issues</h3>
-                    <p className="reason-text">
-                      Wrong item? Damaged? Never arrived? Include your order number
-                      and photos if applicable. We'll sort it out.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="reason-item">
-                  <span className="reason-icon">💳</span>
-                  <div className="reason-content">
-                    <h3 className="reason-title">Payment Problems</h3>
-                    <p className="reason-text">
-                      Charged twice? Payment didn't go through? Refund questions?
-                      (Remember: No refunds on buyer's remorse. Actual errors only.)
-                    </p>
-                  </div>
-                </div>
-
-                <div className="reason-item">
-                  <span className="reason-icon">🤔</span>
-                  <div className="reason-content">
-                    <h3 className="reason-title">General Questions</h3>
-                    <p className="reason-text">
-                      Check the FAQ first. If it's not there, ask away.
-                      We're surprisingly helpful for a meme store.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="reason-item">
-                  <span className="reason-icon">💡</span>
-                  <div className="reason-content">
-                    <h3 className="reason-title">Product Suggestions</h3>
-                    <p className="reason-text">
-                      Want "You're absolutely right" on something else?
-                      Tell us. We might actually do it.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="reason-item">
-                  <span className="reason-icon">⚖️</span>
-                  <div className="reason-content">
-                    <h3 className="reason-title">Legal Stuff</h3>
-                    <p className="reason-text">
-                      Trademark concerns? Copyright issues? DMCA requests?
-                      Use this email. We'll respond appropriately.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="contact-divider"></div>
-
-              <div className="contact-expectations">
-                <h2 className="contact-heading">What to Expect</h2>
-                <p className="expectation-text">
-                  ✅ We respond within 24-48 hours (usually faster)<br/>
-                  ✅ We're helpful and not robots<br/>
-                  ✅ We actually fix problems<br/>
-                  ✅ We maintain the vibe even in support emails
-                </p>
-              </div>
-
-              <div className="contact-footer">
-                <p className="contact-tagline">
-                  You're absolutely right to contact us. 💬
-                </p>
-              </div>
             </div>
           </div>
         </div>
