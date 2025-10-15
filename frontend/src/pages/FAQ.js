@@ -61,7 +61,7 @@ function FAQ() {
               <div className="faq-item">
                 <h2 className="faq-question">What's your refund policy?</h2>
                 <p className="faq-answer">
-                  All sales final. No refunds, no returns.
+                  You're absolutely right to keep it. All sales final. No refunds, no returns.
                 </p>
               </div>
 
