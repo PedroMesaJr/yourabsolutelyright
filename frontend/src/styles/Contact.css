@@ -4,27 +4,26 @@
   min-height: 100vh;
   height: 100vh;
   background-color: #D06D4F;
-  padding: 5.5rem 2rem 0;
+  padding: 5rem 2rem 0;
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding-top: calc(50vh - 200px);
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .contact-container {
   max-width: 900px;
   width: 100%;
   margin: 0 auto;
-  padding-bottom: 2rem;
+  flex-shrink: 0;
 }
 
 .contact-card {
   background: linear-gradient(135deg, #3A3631 0%, #2E2A26 100%);
   border: 2px solid #4A443F;
   border-radius: 12px;
-  padding: 1.5rem 2rem;
+  padding: 1.25rem 2rem;
   box-shadow:
     0 4px 16px rgba(0, 0, 0, 0.3),
     0 8px 32px rgba(0, 0, 0, 0.2),
@@ -32,6 +31,7 @@
   position: relative;
   overflow: visible;
   animation: fadeInUp 0.6s ease-out;
+  margin-bottom: 1rem;
 }
 
 /* Newspaper texture overlay */
@@ -64,19 +64,19 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 1.25rem;
-  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
   border-bottom: 1px solid rgba(199, 191, 179, 0.2);
 }
 
 .header-left {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.2rem;
 }
 
 .contact-title {
-  font-size: 1.5rem;
+  font-size: 1.375rem;
   font-weight: 700;
   color: #F4F3EE;
   margin: 0;
@@ -86,7 +86,7 @@
 }
 
 .contact-subtitle {
-  font-size: 0.75rem;
+  font-size: 0.6875rem;
   color: #C7BFB3;
   margin: 0;
   opacity: 0.7;
@@ -207,8 +207,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
+  margin-top: 0.625rem;
+  padding-top: 0.625rem;
   border-top: 1px solid rgba(199, 191, 179, 0.15);
 }
 
