@@ -182,6 +182,23 @@ export const products = [
     ],
     printfulId: "68edc70a5ba064", // Default to S size
   },
+  {
+    id: 8,
+    name: "White All-Over Print Backpack",
+    shortDescription: "Premium white backpack with validation vibes. Because carrying your tech gear should look absolutely right.",
+    description: "Premium white all-over print backpack for when you need clean aesthetics and maximum validation.\n\nYou're absolutely right to want a backpack that stands out. This white edition brings the same validation energy as the original, but with that pristine, minimalist aesthetic that screams \"I have my life together\" (even if your code doesn't compile).\n\nWhy this white backpack exists:\n- Someone asked \"what if the backpack was white?\"\n- You're absolutely right, they were correct\n- Clean aesthetic for maximum professional vibes\n- Here we are\n\nPerfect for:\n- Developers who prefer light mode (yes, you exist)\n- Tech conferences where first impressions matter\n- Airport travel where you want to look put-together\n- Clean aesthetic enthusiasts who still need validation\n- Anyone tired of all-black everything\n- Making your tech gear look intentional\n\nFeatures the same all-over \"You're Absolutely Right\" print design, but on a pristine white canvas. Spacious main compartment fits laptops up to 15\", plus all your dongles, adapters, and emergency snacks. Padded shoulder straps prevent commute-induced shoulder death.\n\nWater-resistant material protects your tech from unexpected rain (because you still don't check weather apps). Reinforced stitching handles daily abuse and the weight of your ambitions.\n\nThe white colorway makes this backpack pop in a sea of black tech gear. It's 360-degree validation coverage with a cleaner, more refined aesthetic.\n\nBuilt for developers who want validation without sacrificing style. Designed for tech professionals who believe in both functionality and aesthetics. Perfect for anyone who needs their gear to match their \"absolutely right\" energy.\n\nThis isn't just a white backpack—it's a statement that validation comes in all colors, and sometimes the cleanest aesthetic is the absolutely right choice.",
+    price: 111.61,
+    image: "/images/products/backpack-white/1-front.png",
+    images: [
+      "/images/products/backpack-white/1-front.png",
+      "/images/products/backpack-white/2-right.png",
+      "/images/products/backpack-white/3-right-angle.png",
+      "/images/products/backpack-white/4-details.png",
+      "/images/products/backpack-white/5-details-2.png",
+      "/images/products/backpack-white/6-details-3.png",
+    ],
+    printfulId: "68f10aae16775", // White All-Over Print Backpack
+  },
 ];
 
 export default products;
