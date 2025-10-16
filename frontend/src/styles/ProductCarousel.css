@@ -4,6 +4,8 @@
   width: 100%;
   padding: 2rem 0;
   position: relative;
+  margin-top: -8rem;
+  z-index: 10;
 }
 
 .carousel-wrapper {
@@ -229,6 +231,10 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .product-carousel {
+    margin-top: 0;
+  }
+
   .carousel-container {
     gap: 1.5rem;
     padding: 1rem 1rem;
