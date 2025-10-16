@@ -24,9 +24,7 @@ function HomePage() {
     <>
       <Navigation />
       <Hero />
-      <div style={{ marginTop: '-31.944rem' }}>
-        <ProductCarousel />
-      </div>
+      <ProductCarousel />
       <Footer />
     </>
   );
