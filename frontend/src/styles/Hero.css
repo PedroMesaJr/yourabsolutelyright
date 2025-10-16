@@ -1,14 +1,15 @@
 /* Hero Section Styles */
 
 .hero {
-  min-height: 70vh;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding-top: 4rem;
+  padding-top: 0;
   padding-left: var(--space-8);
   padding-right: var(--space-8);
-  padding-bottom: 2rem;
+  padding-bottom: 0;
+  margin-bottom: -28rem;
   background-color: #D06D4F !important;
 }
 
@@ -56,6 +57,7 @@
     padding-left: var(--space-6);
     padding-right: var(--space-6);
     padding-bottom: var(--space-4);
+    margin-bottom: 0;
   }
 
   .hero-logo {
