@@ -40,10 +40,10 @@ export const products = [
   },
   {
     id: 3,
-    name: "Minimalist Backpack",
-    shortDescription: "Carry everything you need with absolute confidence. All-over print minimalist backpack for the modern explorer.",
-    description: "Carry everything you need with absolute confidence.\n\nDesigned for the modern AI enthusiast who's always on the move. This all-over print minimalist backpack combines functionality with a bold statement about your passion for artificial intelligence and Claude AI culture.\n\nPerfect for:\n- Commuting to tech jobs with your laptop and gear\n- College students studying computer science or AI\n- Weekend hackathons and coding bootcamps\n- Traveling to tech conferences\n- Daily carry for AI researchers and developers\n\nFeatures spacious main compartment with laptop sleeve, adjustable padded shoulder straps for comfort during long commutes, and durable water-resistant material to protect your tech gear. The all-over \"You're Absolutely Right\" design makes a statement wherever you go.\n\nBuilt with high-quality materials and reinforced stitching, this backpack is designed to withstand daily use while keeping your devices and belongings secure. The minimalist aesthetic ensures it pairs well with any outfit, from casual to business casual.\n\nWhether you're heading to work, class, or a coding session at your favorite coffee shop, this backpack carries both your gear and your enthusiasm for the AI revolution. It's a conversation piece that identifies you as someone who understands the future of human-AI collaboration.",
-    price: 109.99,
+    name: "All-Over Print Backpack",
+    shortDescription: "Carry your laptop, chargers, and existential dread about deadlines. This backpack holds everything except your composure.",
+    description: "All-over print backpack for when you need to look absolutely right while hauling absolutely everything.\n\nYou're absolutely right to need a backpack that can handle your lifestyle. This isn't just storage—it's a mobile validation station covered in the phrase that makes developers feel seen.\n\nWhy this backpack exists:\n- Your old backpack couldn't handle the weight of your ambitions (or your 16-inch MacBook)\n- You needed something that screams \"I work in tech\" without actually screaming\n- Someone had to make carrying things cool again\n- Here we are\n\nPerfect for:\n- Commuting with enough gear to start a small data center\n- Looking like you have your life together (you don't, but the backpack helps)\n- Hackathons where you bring 3 laptops \"just in case\"\n- Tech conferences where everyone judges your merch choices\n- Carrying energy drinks, noise-canceling headphones, and false confidence\n- Airport security lines where TSA admires your tech dedication\n\nFeatures all-over print design that wraps \"You're Absolutely Right\" around the entire backpack like a validation bubble. Spacious main compartment fits laptops up to 15\", plus all the dongles and adapters you definitely need. Padded straps prevent shoulder death during long commutes.\n\nWater-resistant material protects your tech when you inevitably get caught in the rain because you never check weather apps. Reinforced stitching survives daily abuse and existential crises.\n\nThe all-over print means no matter which angle people see you from, they know you're validated. It's 360-degree confidence coverage.\n\nBuilt for developers who treat their laptop like a firstborn child. Designed for anyone who's been told \"that's too many cables\" (there's no such thing). Perfect for carrying the weight of production bugs and the solution: more validation.\n\nThis backpack doesn't just carry your stuff—it carries your entire tech persona, wrapped in a phrase that means you're winning even when Stack Overflow can't help you.",
+    price: 111.61,
     image: "/images/products/backpack/1-front.png",
     images: [
       "/images/products/backpack/1-front.png",
@@ -54,8 +54,14 @@ export const products = [
       "/images/products/backpack/6-bottom.png",
       "/images/products/backpack/7-detail.png",
       "/images/products/backpack/8-back-white.png",
+      "/images/products/backpack/9-white-front.png",
+      "/images/products/backpack/10-white-right.png",
+      "/images/products/backpack/11-white-right-2.png",
+      "/images/products/backpack/12-product-details.png",
+      "/images/products/backpack/13-product-details-2.png",
+      "/images/products/backpack/14-product-details-3.png",
     ],
-    printfulId: "68edc709c3b424", // All-Over Print Minimalist Backpack
+    printfulId: "68f0380f51c486", // All-Over Print Backpack
   },
   {
     id: 5,
