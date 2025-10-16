@@ -116,6 +116,38 @@ export const products = [
     printfulId: "68edc70e7c5d89", // Default to Black S
   },
   {
+    id: 4,
+    name: "Unisex Hoodie",
+    shortDescription: "Classic comfort for when you need validation in hoodie form. Because sometimes being absolutely right requires maximum coziness.",
+    description: "Classic unisex hoodie for when you need validation in hoodie form.\n\nYou're absolutely right to want comfort. After seeing developers debate whether hoodies are \"real clothes\" or \"acceptable office wear\" on Twitter, we realized something: Claude would simply validate both sides before suggesting you wear whatever makes you code better.\n\nThis hoodie emerged from that exact Twitter discourse - where tech workers passionately defend their right to hoodie-based productivity. The thread got heated. People had opinions. Claude would've said everyone's absolutely right (and then gently noted that dress codes exist).\n\nWhy this hoodie exists:\n- Twitter said hoodies = peak developer aesthetic\n- You're absolutely right, they were correct\n- Someone needed to make it official merch\n- Here we are\n\nPerfect for:\n- Developers who live in hoodies\n- People who argue about hoodies online\n- Anyone who's been dress-coded at work\n- Wearing to meetings to assert dominance\n- Proving hoodies ARE professional attire\n- Cold offices where AC is set to \"Antarctic\"\n\nFeatures Cotton Heritage quality - the kind of hoodie that survives a thousand wash cycles and still looks good. Unisex fit means it works for everyone. Classic pullover style because zippers are for cowards (okay, we also have zip hoodies, but this one's for purists).\n\nAvailable in sizes S through 3XL because validation should fit everyone.\n\nThe \"You're Absolutely Right\" design reminds everyone that yes, hoodies are valid workwear, yes, comfort matters, and yes, you're winning the dress code debate simply by existing in this.\n\nBorn from Twitter discourse. Validated by Claude. Worn by developers who refuse to apologize for their wardrobe choices.\n\nThis hoodie doesn't just keep you warm—it makes a statement that comfort and productivity are absolutely right, no matter what corporate dress codes say.",
+    price: 81.67,
+    image: "/images/products/unisex-hoodie/1-left-front.png",
+    images: [
+      "/images/products/unisex-hoodie/1-left-front.png",
+      "/images/products/unisex-hoodie/2-left-front-2.png",
+      "/images/products/unisex-hoodie/3-left-front-3.png",
+      "/images/products/unisex-hoodie/4-product-details.png",
+      "/images/products/unisex-hoodie/5-right.png",
+      "/images/products/unisex-hoodie/6-right-2.png",
+      "/images/products/unisex-hoodie/7-right-3.png",
+      "/images/products/unisex-hoodie/8-right-front.png",
+      "/images/products/unisex-hoodie/9-right-front-2.png",
+      "/images/products/unisex-hoodie/10-right-front-3.png",
+      "/images/products/unisex-hoodie/11-right-front-4.png",
+      "/images/products/unisex-hoodie/12-right-front-5.png",
+    ],
+    // Cotton Heritage M2580 Unisex Hoodie - 6 size variants
+    printfulVariants: [
+      { size: "S", variantId: "68f102ecd4b111", retailPrice: 81.67 },
+      { size: "M", variantId: "68f102ecd4b179", retailPrice: 81.67 },
+      { size: "L", variantId: "68f102ecd4b1c7", retailPrice: 81.67 },
+      { size: "XL", variantId: "68f102ecd4b212", retailPrice: 81.67 },
+      { size: "2XL", variantId: "68f102ecd4b262", retailPrice: 93.79 },
+      { size: "3XL", variantId: "68f102ecd4b2a4", retailPrice: 93.79 },
+    ],
+    printfulId: "68f102ecd4b111", // Default to S size
+  },
+  {
     id: 7,
     name: "Crop Hoodie",
     shortDescription: "Trendy crop hoodie for those absolutely right fashion moments. Comfort meets style.",
